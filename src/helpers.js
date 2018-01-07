@@ -7,7 +7,7 @@ export function createSubTimer(totalSeconds, isCurrent, title) {
   return {
     id: incrementSubTimerId(),
     totalSeconds,
-    countDown: 0,
+    countDown: totalSeconds,
     title,
     isCurrent,
   }
