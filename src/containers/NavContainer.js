@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Menu from 'material-ui-icons/Menu'
 
-import NavDrawer from './NavDrawer'
-import { displaySingleTimer } from './index'
+import NavDrawer from '../components/NavDrawer'
+import displaySingleTimer from '../actions/displaySingleTimer'
 
 class NavContainer extends Component {
   state = {

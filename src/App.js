@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 
-import NavContainer from './NavContainer'
-import PrimaryContainer from './PrimaryContainer'
+import NavContainer from './containers/NavContainer'
+import PrimaryContainer from './containers/PrimaryContainer'
 
 import 'typeface-roboto'
 
 class App extends Component {
   render() {
-    console.log(this.props)
     return (
       <div>
         <NavContainer/>
