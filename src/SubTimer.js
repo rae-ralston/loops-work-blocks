@@ -5,44 +5,58 @@ import Card from 'material-ui/Card'
 import Divider from 'material-ui/Divider'
 
 import TimerControls from './TimerControls'
-import {convertSecToHMS, totalHMSToSec} from './helpers'
+import {convertSecToHMS} from './helpers'
 
 class SubTimer extends Component {
   state = {
-    time: totalHMSToSec(this.props.timer.hours, this.props.timer.minutes, this.props.timer.seconds),
+    timeLeft: this.props.timer.totalSeconds,
+    interval: null,
+    isTicking: true,
   }
 
-  tick() {
+  componentDidMount() {
+    const interval = setInterval(this.timer, 1000)
+    this.setState({interval})
+  }
 
+  componentWillUnmount() {
+    clearInterval(this.state.interval)
+  }
+
+  timer = () => {
+    if (this.props.timer.isCurrent && this.state.isTicking) {
+      this.setState({timeLeft: this.state.timeLeft - 1})
+    }
+  }
+
+  toggleTicking = () => {
+    console.log("turn off ticking!", this.state.isTicking)
+    this.setState({isTicking: !this.state.isTicking})
   }
 
   render() {
     const {timer} = this.props
-    let HMS = convertSecToHMS(timer.totalSeconds)
-    console.log(this.props)
+    let HMS = convertSecToHMS(this.state.timeLeft)
     timer.hours = HMS[0]
     timer.min = HMS[1]
     timer.sec = HMS[2]
-
+    console.log('@@@', timer)
     return (
-      <Card raised={timer.isCurrent}>
+      <Card>
         <div>
           <Typography type='title' align='center'>{timer.title}</Typography>
           <Typography type='body2' align='center'>is current: {JSON.stringify(timer.isCurrent)}</Typography>
           <Typography type='subheading' align='center'>
             {timer.hours} : {timer.min} : {timer.sec}
           </Typography>
+          <Typography type='title' align='center'>-</Typography>
+
         </div>
-        {timer.isCurrent ? <TimerControls /> : <div></div>}
+        {timer.isCurrent ? <TimerControls toggleTicking={this.toggleTicking} /> : <div></div>}
         <Divider/>
       </Card>
     )
   }
 }
-
-// var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-// var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-// var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-// var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
 export default SubTimer

@@ -2,13 +2,18 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
 import CurrentTimer from './CurrentTimer'
+import {subtractOneSecond} from './index'
 
 class PrimaryContainer extends Component {
   render() {
-    const {timerList} = this.props
+    const {timerList, subtractOneSecond} = this.props
     const currentTimer = timerList.filter(timer => timer.isDisplayed)
+    console.log('primary container:', currentTimer[0])
     return (
-      <CurrentTimer displayTimer={currentTimer[0]} />
+      <CurrentTimer
+        displayTimer={currentTimer[0]}
+        subtractOneSecond={subtractOneSecond}
+      />
     )
   }
 }
@@ -19,4 +24,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, null)(PrimaryContainer)
+export default connect(mapStateToProps, {subtractOneSecond})(PrimaryContainer)
