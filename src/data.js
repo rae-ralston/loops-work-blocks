@@ -3,22 +3,22 @@ import { createSubTimer } from './helpers'
 const data = [
   {
     id: 1,
-    title: 'first timer',
+    title: 'serious list',
     isDisplayed: false,
     subTimers: [
-      createSubTimer(5, 'rest'),
-      createSubTimer(5, 'do'),
-      createSubTimer(5, 'think'),
+      createSubTimer(0, 5, 0, true, 'rest'),
+      createSubTimer(0, 20, 0, false, 'do'),
+      createSubTimer(1, 10, 0, false, 'think'),
     ]
   },
   {
     id: 2,
-    title: 'second timer',
+    title: 'fruits list',
     isDisplayed: true,
     subTimers: [
-      createSubTimer(5, 'apple'),
-      createSubTimer(5, 'orange'),
-      createSubTimer(5, 'banana'),
+      createSubTimer(0, 7, 30, false, 'apple'),
+      createSubTimer(1, 3, 27, true, 'orange'),
+      createSubTimer(0, 4, 2, false, 'banana'),
     ]
   },
 ]

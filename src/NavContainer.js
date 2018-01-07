@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import NavDrawer from './NavDrawer'
 import Menu from 'material-ui-icons/Menu'
+
+import NavDrawer from './NavDrawer'
+import { displaySingleTimer } from './index'
 
 class NavContainer extends Component {
   state = {
@@ -11,14 +13,21 @@ class NavContainer extends Component {
   toggleDrawer = () => {
     this.setState({open: !this.state.open})
   }
-  
+
+  displayTimer = (id) => {
+    console.log('in display timer fn, navContainer')
+    this.props.displaySingleTimer(id)
+  }
+
   render() {
+    console.log('^^^ ^^^', this.props)
     return (
       <div>
         <Menu onClick={this.toggleDrawer} />
         <NavDrawer
           isDrawerOpen={this.state.open}
           timerList={this.props.timerList}
+          displayTimer={this.displayTimer}
           toggleDrawer={this.toggleDrawer}
         />
       </div>
@@ -32,4 +41,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, null)(NavContainer)
+export default connect(mapStateToProps, {displaySingleTimer})(NavContainer)

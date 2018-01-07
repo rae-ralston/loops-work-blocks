@@ -15,7 +15,7 @@ class NavDrawer extends Component {
   }
 
   timerList = (timers) => timers.map(timer => (
-    <ListItem button key={'timer-' + timer.id}>
+    <ListItem button key={timer.id} onClick={() => this.props.displayTimer(timer.id)}>
       <ListItemText primary={timer.title} />
     </ListItem>
   ))

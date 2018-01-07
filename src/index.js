@@ -7,19 +7,22 @@ import {createStore} from 'redux'
 import App from './App'
 import data from './data'
 
-const DISPLAY_ALL_TIMERS = 'DISPLAY_ALL_TIMERS'
+const DISPLAY_SINGLE_TIMER = 'DISPLAY_SINGLE_TIMER'
 
-export function displayAllTimers() {
+export function displaySingleTimer(id) {
   return {
-    type: DISPLAY_ALL_TIMERS
+    type: DISPLAY_SINGLE_TIMER,
+    id
   }
 }
 
 function displayTimers(state=data, action) {
   switch (action.type) {
-    case DISPLAY_ALL_TIMERS:
-      console.log('in reducer': state)
-      return state
+    case DISPLAY_SINGLE_TIMER:
+      return state.map(t => {
+        t.isDisplayed = t.id === action.id
+        return t
+      })
     default:
       return state
   }
