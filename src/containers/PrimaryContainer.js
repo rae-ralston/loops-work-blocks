@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
-import CurrentTimer from './CurrentTimer'
-import {subtractOneSecond} from './index'
+import CurrentTimer from '../components/CurrentTimer'
+import subtractOneSecond from '../actions/subtractOneSecond'
 
 class PrimaryContainer extends Component {
   render() {
