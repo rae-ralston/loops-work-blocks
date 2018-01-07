@@ -6,7 +6,6 @@ import SubTimer from './SubTimer'
 const CurrentTimer = (props) => {
   const {displayTimer} = props
 
-
   const subTimers = displayTimer.subTimers.map(timer => (
     <SubTimer timer={timer} key={'subTimer-' + timer.id} />
   ))

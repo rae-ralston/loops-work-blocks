@@ -3,15 +3,22 @@ function incrementSubTimerId() {
   return subTimerId ++
 }
 
-export function createSubTimer(hours, minutes, seconds, isCurrent, title) {
+export function createSubTimer(totalSeconds, isCurrent, title) {
   return {
     id: incrementSubTimerId(),
-    hours,
-    minutes,
-    seconds,
+    totalSeconds,
+    countDown: 0,
     title,
     isCurrent,
   }
+}
+
+export function convertSecToHMS(sec) {
+  const hours = Math.floor((sec % (60 * 60 * 24)) / (60 * 60))
+  const minutes = Math.floor((sec % (60 * 60)) / (60))
+  const seconds = Math.floor((sec % 60))
+
+  return [hours, minutes, seconds]
 }
 
 function convertHrsToSec(hrs) {
@@ -22,7 +29,7 @@ function convertMinToSec(min) {
   return min * 60
 }
 
-export function totalTime(h, m, s) {
+export function totalHMSToSec(h, m, s) {
   return convertHrsToSec(h) + convertMinToSec(m) + s
 }
 

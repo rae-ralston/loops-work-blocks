@@ -7,20 +7,14 @@ import { displaySingleTimer } from './index'
 
 class NavContainer extends Component {
   state = {
-    open: true
+    open: false
   }
 
-  toggleDrawer = () => {
-    this.setState({open: !this.state.open})
-  }
+  toggleDrawer = () => this.setState({open: !this.state.open})
 
-  displayTimer = (id) => {
-    console.log('in display timer fn, navContainer')
-    this.props.displaySingleTimer(id)
-  }
+  displayTimer = (id) => this.props.displaySingleTimer(id)
 
   render() {
-    console.log('^^^ ^^^', this.props)
     return (
       <div>
         <Menu onClick={this.toggleDrawer} />
