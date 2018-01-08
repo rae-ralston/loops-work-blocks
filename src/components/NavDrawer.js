@@ -15,36 +15,44 @@ class NavDrawer extends Component {
   }
 
   timerList = (timers) => timers.map(timer => (
-    <ListItem button key={timer.id} onClick={() => this.props.displayTimer(timer.id)}>
-      <ListItemText primary={timer.title} />
+    <ListItem button
+      key={ timer.id }
+      onClick={ () => this.props.displayTimer(timer.id) }
+    >
+      <ListItemText primary={ timer.title } />
     </ListItem>
   ))
 
   toggleTimerList = () => {
-    this.setState({ areTimersOpen: !this.state.areTimersOpen})
+    this.setState({ areTimersOpen: !this.state.areTimersOpen })
   }
 
   render() {
-    const {isDrawerOpen, timerList, toggleDrawer} = this.props
+    const { isDrawerOpen, timerList, toggleDrawer } = this.props
     return (
       <Drawer
         type='persistent'
         anchor='left'
-        open={isDrawerOpen}
+        open={ isDrawerOpen }
       >
         <div>
-          <IconButton onClick={toggleDrawer}>
+          <IconButton onClick={ toggleDrawer }>
             <ChevronLeftIcon />
           </IconButton>
         </div>
         <List>
-          <ListItem button onClick={this.toggleTimerList}>
+          <ListItem button onClick={ this.toggleTimerList }>
             <ListItemText primary="Timers" />
-            {this.state.areTimersOpen ? <ExpandLess /> : <ExpandMore />}
+            { this.state.areTimersOpen ? <ExpandLess /> : <ExpandMore /> }
           </ListItem>
-          <Collapse component="li" in={this.state.areTimersOpen} timeout="auto" unmountOnExit>
+          <Collapse
+            component="li"
+            in={ this.state.areTimersOpen }
+            timeout="auto"
+            unmountOnExit
+          >
             <List disablePadding>
-              {this.timerList(timerList)}
+              { this.timerList(timerList) }
             </List>
           </Collapse>
         </List>

@@ -1,4 +1,4 @@
-import { createSubTimer } from './helpers'
+import { createSubTimer } from '../helpers'
 
 const data = [
   {

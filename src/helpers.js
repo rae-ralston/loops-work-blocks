@@ -21,13 +21,8 @@ export function convertSecToHMS(sec) {
   return [hours, minutes, seconds]
 }
 
-function convertHrsToSec(hrs) {
-  return hrs * 60 * 60
-}
-
-function convertMinToSec(min) {
-  return min * 60
-}
+const convertHrsToSec = (hrs) => hrs * 60 * 60
+const convertMinToSec = (min) => min * 60
 
 export function totalHMSToSec(h, m, s) {
   return convertHrsToSec(h) + convertMinToSec(m) + s
