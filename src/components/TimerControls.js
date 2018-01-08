@@ -9,7 +9,10 @@ const TimerControls = (props) => (
     <IconButton aria-label="Previous">
       <SkipPreviousIcon />
     </IconButton>
-    <IconButton onClick={() => props.toggleTicking()} aria-label="Play/pause">
+    <IconButton
+      onClick={ () => props.toggleTicking() }
+      aria-label="Play/pause"
+    >
       <PlayArrowIcon />
     </IconButton>
     <IconButton aria-label="Next">
