@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import Typography from 'material-ui/Typography'
 import Card from 'material-ui/Card'
@@ -30,8 +31,11 @@ class SubTimer extends Component {
   }
 
   toggleTicking = () => this.setState({ isTicking: !this.state.isTicking })
-  nextSubTimer = () =>
-    this.props.rotateSubTimer(this.props.displayTimerId, this.props.timer.id)
+
+  nextSubTimer = () => {
+    const { dispatch, rotateSubTimer } = this.props
+    dispatch(rotateSubTimer(this.props.displayTimerId, this.props.timer.id))
+  }
 
   render() {
     const { timer } = this.props
@@ -63,4 +67,4 @@ class SubTimer extends Component {
   }
 }
 
-export default SubTimer
+export default connect()(SubTimer)
