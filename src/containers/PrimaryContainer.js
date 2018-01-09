@@ -7,7 +7,7 @@ import {rotateSubTimer} from '../index'
 
 class PrimaryContainer extends Component {
   render() {
-    console.log("@@@", this.props)
+    console.log("@@@", this.props.timerList[1].subTimers)
     const { timerList } = this.props
     const currentTimer = timerList.filter(timer => timer.isDisplayed)
 

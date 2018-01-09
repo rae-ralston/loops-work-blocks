@@ -4,7 +4,7 @@ import {
  } from '../constants'
 import data from '../data/data'
 
-export function timers(state=data, action) {
+export default function timers(state=data, action) {
   console.log('IN REDUCER')
 
   switch (action.type) {
@@ -19,42 +19,39 @@ export function timers(state=data, action) {
       })
 
     case ROTATE_SUB_TIMER:
-      console.log('in rotateSubTimer reducer')
       return state.map(displayTimer => {
         if (displayTimer.id === action.displayTimerId) {
-          let nextIndex
-          displayTimer.subTimers.map((subTimer, i, collection) => {
-            if (subTimer.id === action.subTimerId) {
-              nextIndex = subTimer.index + 1
-              if(nextIndex > collection.length) {
-                nextIndex = 0
-              }
-              return {
-                ...subTimer,
-                isCurrent: false,
-              }
-            }
-            if (subTimer.index === nextIndex) {
-              return {
-                ...subTimer,
-                isCurrent: true,10
-              }
-            }
-            if (i === collection.length - 1) {
-              return {
-                subTimer,
-                isCurrent: true,
-              }
-            }
-            // displayTimer.subTimers[i + 1].isCurrent = true
-            return subTimer
-          })
+          return reduceRotateSubTimer(displayTimer, action)
         }
         return displayTimer
       })
-      return state
 
     default:
       return state
   }
+}
+
+function reduceRotateSubTimer(displayTimerArray, action) {
+  let nextIndex
+
+  displayTimerArray.subTimers = displayTimerArray.subTimers.map(subTimer => {
+    console.log(subTimer.id === action.subTimerId)
+    if (subTimer.id === action.subTimerId) {
+      nextIndex = subTimer.index + 1
+      return { ...subTimer, isCurrent: false }
+
+    } else if (subTimer.index === nextIndex) {
+      return { ...subTimer, isCurrent: true }
+
+    } else {
+      // console.log('00',subTimer)
+      return subTimer
+    }
+    // if (i === array.length - 1) {
+    //   const firstTimer = array[0]
+    //   console.log(firstTimer)
+    // }
+  })
+  // console.log('arrgh', whatever)
+  return displayTimerArray
 }

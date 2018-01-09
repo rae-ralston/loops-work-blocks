@@ -15,7 +15,7 @@ class NavContainer extends Component {
   displayTimer = (id) => this.props.displaySingleTimer(id)
 
   render() {
-    console.log('))))', this.props)
+    console.log('nav container props: ', this.props)
     return (
       <div>
         <Menu onClick={ this.toggleDrawer } />

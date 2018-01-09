@@ -11,7 +11,6 @@ import {
   DISPLAY_SINGLE_TIMER,
   ROTATE_SUB_TIMER,
  } from './constants'
-import data from './data/data'
 
 export function rotateSubTimer(displayTimerId, subTimerId) {
   console.log('action creator: rotateSubTimer', displayTimerId, subTimerId)
