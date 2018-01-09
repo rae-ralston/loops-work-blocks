@@ -16,7 +16,7 @@ const TimerControls = (props) => (
       <PlayArrowIcon />
     </IconButton>
     <IconButton aria-label="Next">
-      <SkipNextIcon />
+      <SkipNextIcon onClick={ () => props.nextSubTimer() } />
     </IconButton>
   </div>
 )

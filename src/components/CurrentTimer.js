@@ -5,13 +5,14 @@ import SubTimer from './SubTimer'
 
 class CurrentTimer extends Component {
   render() {
-    const { displayTimer } = this.props
+    // console.log(this.props)
+    const { displayTimer, rotateSubTimer } = this.props
     const subTimers = displayTimer.subTimers.map(timer => (
       <SubTimer
         displayTimerId={ displayTimer.id }
         timer={ timer }
         key={ 'subTimer-' + timer.id }
-        handleTick={ this.handleTick }
+        rotateSubTimer={ rotateSubTimer }
       />
     ))
     return (

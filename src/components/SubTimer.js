@@ -30,9 +30,12 @@ class SubTimer extends Component {
   }
 
   toggleTicking = () => this.setState({ isTicking: !this.state.isTicking })
+  nextSubTimer = () =>
+    this.props.rotateSubTimer(this.props.displayTimerId, this.props.timer.id)
 
   render() {
     const { timer } = this.props
+    // console.log('$$$', this.props)
     let HMS = convertSecToHMS(this.state.timeLeft)
     timer.hours = HMS[0]
     timer.min = HMS[1]
@@ -48,7 +51,10 @@ class SubTimer extends Component {
         </div>
         {
           timer.isCurrent ?
-            <TimerControls toggleTicking={ this.toggleTicking } /> :
+            <TimerControls
+              toggleTicking={ this.toggleTicking }
+              nextSubTimer={ this.nextSubTimer }
+            /> :
             <div></div>
         }
         <Divider/>
