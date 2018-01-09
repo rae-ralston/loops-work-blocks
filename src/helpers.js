@@ -1,15 +1,14 @@
 let subTimerId = 1
-function incrementSubTimerId() {
-  return subTimerId ++
-}
+const incrementSubTimerId = () => subTimerId ++
 
-export function createSubTimer(totalSeconds, isCurrent, title) {
+export function createSubTimer(totalSeconds, isCurrent, title, index) {
   return {
     id: incrementSubTimerId(),
     totalSeconds,
     countDown: totalSeconds,
     title,
     isCurrent,
+    index,
   }
 }
 

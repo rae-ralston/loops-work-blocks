@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
 import App from './App'
-// import timers from './reducers/timers'
+import timers from './reducers/timers'
 
 import {
   DISPLAY_SINGLE_TIMER,
@@ -30,26 +30,7 @@ export function displaySingleTimer(displayTimerId) {
   }
 }
 
-export function timers(state=data, action) {
-  console.log('IN REDUCER')
 
-  switch (action.type) {
-
-    case DISPLAY_SINGLE_TIMER:
-      console.log('in reducer display single timer')
-      return state.map(t => {
-        t.isDisplayed = t.id === action.displayTimerId
-        return t
-      })
-
-    case ROTATE_SUB_TIMER:
-      console.log('in rotateSubTimer reducer')
-      return state
-
-    default:
-      return state
-  }
-}
 
 let store = createStore(timers)
 
