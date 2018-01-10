@@ -4,18 +4,20 @@ const data = [
   {
     id: 1,
     title: 'serious list',
-    isDisplayed: false,
+    isDisplayed: true,
     subTimerCount: 0,
     subTimers: [
       createSubTimer(450, true, 'rest', 1),
       createSubTimer(3807, false, 'do', 2),
       createSubTimer(242, false, 'think', 3),
+      createSubTimer(242, false, 'swim', 4),
+      createSubTimer(242, false, 'run', 5),
     ]
   },
   {
     id: 2,
     title: 'fruits list',
-    isDisplayed: true,
+    isDisplayed: false,
     subTimerCount: 0,
     subTimers: [
       createSubTimer(300, false, 'apple', 1),

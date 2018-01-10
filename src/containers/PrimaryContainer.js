@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import CurrentTimer from '../components/CurrentTimer'
-// import rotateSubTimer from '../actions/rotateSubTimer'
-import {rotateSubTimer} from '../index'
+import rotateSubTimer from '../actions/rotateSubTimer'
 
 class PrimaryContainer extends Component {
   render() {
-    console.log("@@@", this.props.timerList[1].subTimers)
     const { timerList } = this.props
     const currentTimer = timerList.filter(timer => timer.isDisplayed)
 
