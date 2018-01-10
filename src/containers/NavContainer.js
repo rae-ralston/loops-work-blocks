@@ -3,8 +3,7 @@ import {connect} from 'react-redux'
 import Menu from 'material-ui-icons/Menu'
 
 import NavDrawer from '../components/NavDrawer'
-// import displaySingleTimer from '../actions/displaySingleTimer'
-import {displaySingleTimer} from '../index'
+import displaySingleTimer from '../actions/displaySingleTimer'
 
 class NavContainer extends Component {
   state = {
@@ -15,7 +14,6 @@ class NavContainer extends Component {
   displayTimer = (id) => this.props.displaySingleTimer(id)
 
   render() {
-    console.log('))))', this.props)
     return (
       <div>
         <Menu onClick={ this.toggleDrawer } />
