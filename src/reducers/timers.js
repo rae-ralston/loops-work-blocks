@@ -42,14 +42,27 @@ function reduceRotateSubTimer(displayTimerArray, action) {
         return { ...subTimer, isCurrent: true }
       }
 
-      if (array.length - 1 <= subTimer.index ) {
-        temp = { ...array[0], isCurrent: true }
-        onLast = true
-      }
 
       return subTimer
     })
-  displayTimerArray.subTimers[0] = onLast ? temp : { ...displayTimerArray.subTimers[0], isCurrent: false }
-  console.log("===",displayTimerArray.subTimers)
+  // console.log('are we on the last? ', array.length - 1 <= subTimer.index)
+  if (nextIndex > displayTimerArray.subTimers.length) {
+    temp = { ...displayTimerArray.subTimers[0], isCurrent: true }
+    onLast = true
+  }
+
+  // take handle last to first turn over outside of loop
+  console.log(onLast, 'nextIndex', nextIndex)
+  if (onLast) {
+    onLast = false
+    displayTimerArray.subTimers[0] = temp
+  } else {
+    displayTimerArray.subTimers[0] = { ...displayTimerArray.subTimers[0], isCurrent: false }
+  }
+  // displayTimerArray.subTimers[0] = onLast ? temp :
+  // if (displayTimerArray.subTimers[1].isCurrent) {
+  //   displayTimerArray.subTimers[0]
+  // }
+  // console.log("===",displayTimerArray.subTimers)
   return displayTimerArray
 }
