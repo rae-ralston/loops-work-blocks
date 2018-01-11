@@ -4,23 +4,30 @@ import IconButton from 'material-ui/IconButton'
 import SkipPreviousIcon from 'material-ui-icons/SkipPrevious'
 import SkipNextIcon from 'material-ui-icons/SkipNext'
 import PlayArrowIcon from 'material-ui-icons/PlayArrow'
+import PauseIcon from 'material-ui-icons/Pause'
 
 class TimerControls extends Component {
   render() {
-    const { toggleTicking, nextSubTimer } = this.props
+    const { toggleTicking, nextSubTimer, isTicking } = this.props
     return (
       <div align='center'>
-        <IconButton aria-label="Previous">
-          <SkipPreviousIcon onClick={ () => nextSubTimer('prev')} />
+        <IconButton
+          onClick={ () => nextSubTimer('prev')}
+          aria-label="Previous"
+        >
+          <SkipPreviousIcon />
         </IconButton>
         <IconButton
           onClick={ () => toggleTicking() }
           aria-label="Play/pause"
           >
-          <PlayArrowIcon />
+          { isTicking ? <PauseIcon /> : <PlayArrowIcon />}
         </IconButton>
-        <IconButton aria-label="Next">
-          <SkipNextIcon onClick={ () => nextSubTimer('next') } />
+        <IconButton
+          onClick={ () => nextSubTimer('next') }
+          aria-label="Next"
+        >
+          <SkipNextIcon />
         </IconButton>
       </div>
     )
