@@ -11,7 +11,7 @@ class TimerControls extends Component {
     return (
       <div align='center'>
         <IconButton aria-label="Previous">
-          <SkipPreviousIcon />
+          <SkipPreviousIcon onClick={ () => nextSubTimer('prev')} />
         </IconButton>
         <IconButton
           onClick={ () => toggleTicking() }
@@ -20,7 +20,7 @@ class TimerControls extends Component {
           <PlayArrowIcon />
         </IconButton>
         <IconButton aria-label="Next">
-          <SkipNextIcon onClick={ () => nextSubTimer() } />
+          <SkipNextIcon onClick={ () => nextSubTimer('next') } />
         </IconButton>
       </div>
     )

@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Menu from 'material-ui-icons/Menu'
 
 import NavDrawer from '../components/NavDrawer'
@@ -14,7 +14,7 @@ class NavContainer extends Component {
   displayTimer = (id) => this.props.displaySingleTimer(id)
 
   render() {
-    console.log("nav container: ",this.props)
+    // console.log("nav container: ",this.props)
 
     return (
       <div>
@@ -30,6 +30,6 @@ class NavContainer extends Component {
   }
 }
 
-const mapStateToProps= state => ({ timerList: state })
+const mapStateToProps = state => ({ timerList: state })
 
 export default connect(mapStateToProps, { displaySingleTimer })(NavContainer)
