@@ -11,7 +11,7 @@ import ChevronLeftIcon from 'material-ui-icons/ChevronLeft'
 
 class NavDrawer extends Component {
   state = {
-    areTimersOpen: false
+    drawerOpen: true,
   }
 
   timerList = (timers) => timers.map(timer => (
@@ -24,11 +24,18 @@ class NavDrawer extends Component {
   ))
 
   toggleTimerList = () => {
-    this.setState({ areTimersOpen: !this.state.areTimersOpen })
+    this.setState({ drawerOpen: !this.state.drawerOpen })
   }
 
   render() {
-    const { isDrawerOpen, timerList, toggleDrawer } = this.props
+    const {
+      isDrawerOpen,
+      timerList,
+      toggleDrawer,
+      newDisplayTimer
+    } = this.props
+    const { drawerOpen } = this.state
+    // console.log('^^^', newDisplayTimer)
     return (
       <Drawer
         type='persistent'
@@ -43,16 +50,22 @@ class NavDrawer extends Component {
         <List>
           <ListItem button onClick={ this.toggleTimerList }>
             <ListItemText primary="Timers" />
-            { this.state.areTimersOpen ? <ExpandLess /> : <ExpandMore /> }
+            { drawerOpen ? <ExpandLess /> : <ExpandMore /> }
           </ListItem>
           <Collapse
             component="li"
-            in={ this.state.areTimersOpen }
+            in={ drawerOpen }
             timeout="auto"
             unmountOnExit
           >
             <List disablePadding>
-              { this.timerList(timerList) }
+              <ListItem button onClick={ () => newDisplayTimer() }>
+                <ListItemText primary="add a Timer" />
+              </ListItem>
+
+              {
+                this.timerList(timerList)
+              }
             </List>
           </Collapse>
         </List>

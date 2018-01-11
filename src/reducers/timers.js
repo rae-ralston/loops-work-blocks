@@ -1,6 +1,7 @@
 import {
   DISPLAY_SINGLE_TIMER,
   ROTATE_SUB_TIMER,
+  NEW_DISPLAY_TIMER,
  } from '../constants'
 import data from '../data/data'
 
@@ -22,6 +23,10 @@ export default function timers(state=data, action) {
         }
         return displayTimer
       })
+
+    case NEW_DISPLAY_TIMER:
+      console.log('reducer&&&&&&&&&&in new display timer')
+      return state
 
     default:
       return state

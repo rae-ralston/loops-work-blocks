@@ -12,7 +12,7 @@ class SubTimer extends Component {
   state = {
     timeLeft: this.props.timer.totalSeconds,
     interval: null,
-    isTicking: true,
+    isTicking: false,
   }
 
   componentDidMount() {
@@ -43,7 +43,7 @@ class SubTimer extends Component {
 
   render() {
     const { timer } = this.props
-    console.log('$$$', this.props)
+    // console.log('$$$', this.props)
     let HMS = convertSecToHMS(this.state.timeLeft)
     timer.hours = HMS[0]
     timer.min = HMS[1]

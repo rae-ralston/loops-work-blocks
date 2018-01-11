@@ -4,6 +4,7 @@ import Menu from 'material-ui-icons/Menu'
 
 import NavDrawer from '../components/NavDrawer'
 import displaySingleTimer from '../actions/displaySingleTimer'
+import newDisplayTimer from '../actions/newDisplayTimer'
 
 class NavContainer extends Component {
   state = {
@@ -12,9 +13,13 @@ class NavContainer extends Component {
 
   toggleDrawer = () => this.setState({ open: !this.state.open })
   displayTimer = (id) => this.props.displaySingleTimer(id)
+  newDisplayTimer = () => this.props.newDisplayTimer()
+  // TODO Debut display new timer. This isn't hitting the reducer. There's something
+  // I don't understand here bc this is a mistake i've made a couple of times
+  // Timer for some more research!
 
   render() {
-    // console.log("nav container: ",this.props)
+    console.log("nav container: ", this.props)
 
     return (
       <div>
@@ -24,6 +29,7 @@ class NavContainer extends Component {
           timerList={ this.props.timerList }
           displayTimer={ this.displayTimer }
           toggleDrawer={ this.toggleDrawer }
+          newDisplayTimer={ this.newDisplayTimer }
         />
       </div>
     )
@@ -32,4 +38,7 @@ class NavContainer extends Component {
 
 const mapStateToProps = state => ({ timerList: state })
 
-export default connect(mapStateToProps, { displaySingleTimer })(NavContainer)
+export default connect(mapStateToProps, {
+  displaySingleTimer,
+  newDisplayTimer,
+})(NavContainer)
