@@ -1,17 +1,3 @@
-let subTimerId = 1
-const incrementSubTimerId = () => subTimerId ++
-
-export function createSubTimer(totalSeconds, isCurrent, title, index) {
-  return {
-    id: incrementSubTimerId(),
-    totalSeconds,
-    countDown: totalSeconds,
-    title,
-    isCurrent,
-    index,
-  }
-}
-
 export function convertSecToHMS(sec) {
   const hours = Math.floor((sec % (60 * 60 * 24)) / (60 * 60))
   const minutes = Math.floor((sec % (60 * 60)) / (60))

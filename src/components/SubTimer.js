@@ -28,13 +28,17 @@ class SubTimer extends Component {
     if (this.props.timer.isCurrent && this.state.isTicking) {
       this.setState({ timeLeft: this.state.timeLeft - 1 })
     }
+    if (this.state.timeLeft <= 0) {
+      this.nextSubTimer('next')
+    }
   }
 
   toggleTicking = () => this.setState({ isTicking: !this.state.isTicking })
 
-  nextSubTimer = () => {
+  nextSubTimer = (direction) => {
     const { dispatch, rotateSubTimer } = this.props
-    dispatch(rotateSubTimer(this.props.displayTimerId, this.props.timer.id))
+    this.setState({ timeLeft: this.props.timer.totalSeconds })
+    dispatch(rotateSubTimer(this.props.displayTimerId, this.props.timer.id, direction))
   }
 
   render() {

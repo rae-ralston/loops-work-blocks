@@ -5,7 +5,6 @@ import SubTimer from './SubTimer'
 
 class CurrentTimer extends Component {
   render() {
-    // console.log(this.props)
     const { displayTimer, rotateSubTimer } = this.props
     const subTimers = displayTimer.subTimers.map(timer => (
       <SubTimer

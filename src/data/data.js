@@ -1,4 +1,4 @@
-import { createSubTimer } from '../helpers'
+import createSubTimer from './helpers'
 
 const data = [
   {
@@ -7,11 +7,11 @@ const data = [
     isDisplayed: true,
     subTimerCount: 0,
     subTimers: [
-      createSubTimer(450, true, 'rest', 1),
-      createSubTimer(3807, false, 'do', 2),
-      createSubTimer(242, false, 'think', 3),
-      createSubTimer(242, false, 'swim', 4),
-      createSubTimer(242, false, 'run', 5),
+      createSubTimer(3, true, 'rest', 1),
+      createSubTimer(3, false, 'do', 2),
+      createSubTimer(3, false, 'think', 3),
+      createSubTimer(3, false, 'swim', 4),
+      createSubTimer(3, false, 'run', 5),
     ]
   },
   {

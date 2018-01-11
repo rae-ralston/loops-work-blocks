@@ -14,6 +14,8 @@ class NavContainer extends Component {
   displayTimer = (id) => this.props.displaySingleTimer(id)
 
   render() {
+    console.log("nav container: ",this.props)
+
     return (
       <div>
         <Menu onClick={ this.toggleDrawer } />
@@ -28,8 +30,6 @@ class NavContainer extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { timerList: state }
-}
+const mapStateToProps= state => ({ timerList: state })
 
 export default connect(mapStateToProps, { displaySingleTimer })(NavContainer)
