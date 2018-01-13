@@ -6,6 +6,7 @@ import {
 import data from '../data/data'
 
 export default function timers(state=data, action) {
+  console.log('hit reducer', action)
   switch (action.type) {
 
     case DISPLAY_SINGLE_TIMER:
@@ -25,7 +26,7 @@ export default function timers(state=data, action) {
       })
 
     case NEW_DISPLAY_TIMER:
-      console.log('reducer&&&&&&&&&&in new display timer')
+      console.log('reducer: in new display timer')
       return state
 
     default:

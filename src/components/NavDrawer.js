@@ -12,6 +12,8 @@ import ChevronLeftIcon from 'material-ui-icons/ChevronLeft'
 class NavDrawer extends Component {
   state = {
     drawerOpen: true,
+    modalOpen: false,
+    newTimerTitle: "",
   }
 
   timerList = (timers) => timers.map(timer => (
@@ -23,19 +25,24 @@ class NavDrawer extends Component {
     </ListItem>
   ))
 
-  toggleTimerList = () => {
-    this.setState({ drawerOpen: !this.state.drawerOpen })
+  toggleNewTimerModal = () => this.setState({ modalOpen: !this.state.modalOpen})
+  toggleNavDrawer = () => this.setState({ drawerOpen: !this.state.drawerOpen })
+  handleChange = (e) => this.setState({ newTimerTitle: e.target.value })
+  handleBlur = (e) => this.toggleNewTimerModal()
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.newDisplayTimer(this.state.newTimerTitle)
   }
 
   render() {
+    const { drawerOpen } = this.state
     const {
       isDrawerOpen,
       timerList,
       toggleDrawer,
-      newDisplayTimer
     } = this.props
-    const { drawerOpen } = this.state
-    // console.log('^^^', newDisplayTimer)
+    // console.log('^^^', this.props)
     return (
       <Drawer
         type='persistent'
@@ -48,7 +55,7 @@ class NavDrawer extends Component {
           </IconButton>
         </div>
         <List>
-          <ListItem button onClick={ this.toggleTimerList }>
+          <ListItem button onClick={ this.toggleNavDrawer }>
             <ListItemText primary="Timers" />
             { drawerOpen ? <ExpandLess /> : <ExpandMore /> }
           </ListItem>
@@ -59,10 +66,22 @@ class NavDrawer extends Component {
             unmountOnExit
           >
             <List disablePadding>
-              <ListItem button onClick={ () => newDisplayTimer() }>
-                <ListItemText primary="add a Timer" />
-              </ListItem>
-
+              {
+                this.state.modalOpen ?
+                  <form className="commentForm" onSubmit={ (e) => this.handleSubmit(e) }>
+                    <input
+                      type="text"
+                      placeholder="Title"
+                      value={ this.state.newTimerTitle }
+                      onChange={ (e) => this.handleChange(e) }
+                      onBlur={ (e) => this.handleBlur(e)}
+                    />
+                    <input type="submit" value="Post" />
+                  </form> :
+                  <ListItem button onClick={ () => this.toggleNewTimerModal() }>
+                    <ListItemText primary="new Timer" />
+                  </ListItem>
+              }
               {
                 this.timerList(timerList)
               }

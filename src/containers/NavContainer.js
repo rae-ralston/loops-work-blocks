@@ -13,8 +13,8 @@ class NavContainer extends Component {
 
   toggleDrawer = () => this.setState({ open: !this.state.open })
   displayTimer = (id) => this.props.displaySingleTimer(id)
-  newDisplayTimer = () => this.props.newDisplayTimer()
-  // TODO Debut display new timer. This isn't hitting the reducer. There's something
+  // newDisplayTimer = (title) => this.props.newDisplayTimer(title)
+  // TODO Debug display new timer. This isn't hitting the reducer. There's something
   // I don't understand here bc this is a mistake i've made a couple of times
   // Timer for some more research!
 
@@ -29,7 +29,7 @@ class NavContainer extends Component {
           timerList={ this.props.timerList }
           displayTimer={ this.displayTimer }
           toggleDrawer={ this.toggleDrawer }
-          newDisplayTimer={ this.newDisplayTimer }
+          newDisplayTimer={ this.props.newDisplayTimer }
         />
       </div>
     )

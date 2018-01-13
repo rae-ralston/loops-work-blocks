@@ -12,7 +12,6 @@ class SubTimer extends Component {
   state = {
     timeLeft: this.props.timer.totalSeconds,
     interval: null,
-    isTicking: false,
   }
 
   componentDidMount() {
@@ -25,15 +24,13 @@ class SubTimer extends Component {
   }
 
   timer = () => {
-    if (this.props.timer.isCurrent && this.state.isTicking) {
+    if (this.props.timer.isCurrent && this.props.isTicking) {
       this.setState({ timeLeft: this.state.timeLeft - 1 })
     }
-    if (this.state.timeLeft <= 0) {
+    if (this.state.timeLeft < 0) {
       this.nextSubTimer('next')
     }
   }
-
-  toggleTicking = () => this.setState({ isTicking: !this.state.isTicking })
 
   nextSubTimer = (direction) => {
     const { dispatch, rotateSubTimer } = this.props
@@ -42,7 +39,7 @@ class SubTimer extends Component {
   }
 
   render() {
-    const { timer } = this.props
+    const { timer, toggleTicking } = this.props
     // console.log('$$$', this.props)
     let HMS = convertSecToHMS(this.state.timeLeft)
     timer.hours = HMS[0]
@@ -60,7 +57,7 @@ class SubTimer extends Component {
         {
           timer.isCurrent ?
             <TimerControls
-              toggleTicking={ this.toggleTicking }
+              toggleTicking={ toggleTicking }
               nextSubTimer={ this.nextSubTimer }
               isTicking={ this.state.isTicking }
             /> :
