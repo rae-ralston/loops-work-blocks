@@ -22,12 +22,19 @@ class CurrentTimer extends Component {
         toggleTicking={ this.toggleTicking }
       />
     ))
+    // console.log(this.props.rotateSubTimer)
     return (
       <div>
         <Typography type='display3' align='center' gutterBottom>
           { displayTimer.title }
         </Typography>
-        { subTimers }
+        {
+          displayTimer.subTimers.length ?
+          subTimers :
+          <Typography type='display3' align='center' gutterBottom>
+            +
+          </Typography>
+        }
       </div>
     )
   }

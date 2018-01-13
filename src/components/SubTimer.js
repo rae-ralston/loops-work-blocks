@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 
 import Typography from 'material-ui/Typography'
 import Card from 'material-ui/Card'
@@ -33,9 +32,9 @@ class SubTimer extends Component {
   }
 
   nextSubTimer = (direction) => {
-    const { dispatch, rotateSubTimer } = this.props
+    const { rotateSubTimer } = this.props
     this.setState({ timeLeft: this.props.timer.totalSeconds })
-    dispatch(rotateSubTimer(this.props.displayTimerId, this.props.timer.id, direction))
+    rotateSubTimer(this.props.displayTimerId, this.props.timer.id, direction)
   }
 
   render() {
@@ -69,4 +68,4 @@ class SubTimer extends Component {
   }
 }
 
-export default connect()(SubTimer)
+export default SubTimer

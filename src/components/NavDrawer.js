@@ -28,11 +28,12 @@ class NavDrawer extends Component {
   toggleNewTimerModal = () => this.setState({ modalOpen: !this.state.modalOpen})
   toggleNavDrawer = () => this.setState({ drawerOpen: !this.state.drawerOpen })
   handleChange = (e) => this.setState({ newTimerTitle: e.target.value })
-  handleBlur = (e) => this.toggleNewTimerModal()
+  // handleBlur = (e) => this.toggleNewTimerModal()
 
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.newDisplayTimer(this.state.newTimerTitle)
+    this.toggleNewTimerModal()
   }
 
   render() {
@@ -74,7 +75,6 @@ class NavDrawer extends Component {
                       placeholder="Title"
                       value={ this.state.newTimerTitle }
                       onChange={ (e) => this.handleChange(e) }
-                      onBlur={ (e) => this.handleBlur(e)}
                     />
                     <input type="submit" value="Post" />
                   </form> :
