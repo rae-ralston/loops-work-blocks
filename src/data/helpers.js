@@ -1,11 +1,11 @@
 let subTimerIdCount = 1
 , displayTimerIdCount = 3
 
-const incrementTimerId = type => type === 'display' ? displayTimerIdCount ++ : subTimerIdCount ++
+const _incrementTimerId = type => type === 'display' ? displayTimerIdCount ++ : subTimerIdCount ++
 
 export function createSubTimer(totalSeconds, isCurrent, title, index) {
   return {
-    id: incrementTimerId('sub'),
+    id: _incrementTimerId('sub'),
     totalSeconds,
     title,
     isCurrent,
@@ -15,7 +15,7 @@ export function createSubTimer(totalSeconds, isCurrent, title, index) {
 
 export function createDisplayTimer(title) {
   return {
-    id: incrementTimerId('display'),
+    id: _incrementTimerId('display'),
     title,
     isDisplayed: false,
     subTimerCount: 0,
@@ -23,6 +23,12 @@ export function createDisplayTimer(title) {
   }
 }
 
-export const hrs = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
-export const min = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
-export const sec = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
+function _createTimeUnits(n) {
+  var arr = Array.apply(null, Array(n))
+  return arr.map((x, i) => i)
+}
+
+// +1 to be 0 indexed
+export const hrs = _createTimeUnits(25)
+export const min = _createTimeUnits(61)
+export const sec = _createTimeUnits(61)

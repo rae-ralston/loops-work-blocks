@@ -15,9 +15,15 @@ class CurrentTimer extends Component {
 
   toggleTicking = () => this.setState({ isTicking: !this.state.isTicking })
   toggleAddSubTimer = () => this.setState({ addSubTimer: !this.state.addSubTimer})
+  handleAddSubTimer = (title, totalTime) => {
+    const { newSubTimer, displayTimer } = this.props
+    newSubTimer(displayTimer.id, title, totalTime)
+    this.toggleAddSubTimer()
+  }
+
 
   render() {
-    const { displayTimer, rotateSubTimer, newSubTimer } = this.props
+    const { displayTimer, rotateSubTimer } = this.props
     const subTimers = displayTimer.subTimers.map(timer => (
       <SubTimer
         displayTimerId={ displayTimer.id }
@@ -37,7 +43,7 @@ class CurrentTimer extends Component {
         { subTimers }
         {
           this.state.addSubTimer ?
-            <AddSubTimerForm newSubTimer={ newSubTimer } displayTimerId={displayTimer.id} /> :
+            <AddSubTimerForm handleAddSubTimer={ this.handleAddSubTimer } /> :
             <Button
               fab dense mini
               color="primary"

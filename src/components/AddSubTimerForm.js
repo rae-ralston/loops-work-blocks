@@ -19,18 +19,18 @@ class AddSubTimerForm extends Component {
   handleChange = name => event => this.setState({ [name]: event.target.value })
   handleSubmit = event => {
     const { title, hours, minutes, seconds } = this.state
-    const { newSubTimer, displayTimerId } = this.props
+    const { handleAddSubTimer } = this.props
     event.preventDefault()
     let totalTime = totalHMSToSec(hours, minutes, seconds)
-    newSubTimer(displayTimerId, title, totalTime)
+    handleAddSubTimer(title, totalTime)
   }
 
   render() {
-    console.log('***',this.props)
     return (
       <Card>
-        <form className="addSubTimerForm" onSubmit={ (e) => this.handleSubmit(e) }>
+        <form className="addSubTimerForm" onSubmit={ event => this.handleSubmit(event) }>
           <TextField
+            required
             align='center'
             id='title'
             label='title'
