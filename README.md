@@ -98,7 +98,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 - [ ] users can choose color theme or background from [Unsplash api](https://unsplash.com/developers)
 
 WIP
-- ! - DEBUG why isn't rotateSubTimer dispatching the action to the reducer?
 - figure out MUI's withStyles HOC
   - work with this on [nested nav](https://codesandbox.io/s/v806y321yy)
   - [api](https://material-ui-next.com/customization/css-in-js/#withstyles-styles-options-higher-order-component)
