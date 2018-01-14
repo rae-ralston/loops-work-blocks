@@ -4,15 +4,16 @@ import Drawer from 'material-ui/Drawer'
 import List, { ListItem, ListItemText } from 'material-ui/List'
 import IconButton from 'material-ui/IconButton'
 import Collapse from 'material-ui/transitions/Collapse'
+import AddDisplayTimerForm from './AddDisplayTimerForm'
 
 import ExpandLess from 'material-ui-icons/ExpandLess'
 import ExpandMore from 'material-ui-icons/ExpandMore'
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft'
 
-class NavDrawer extends Component {
+export default class NavDrawer extends Component {
   state = {
     drawerOpen: true,
-    modalOpen: false,
+    addDisplayTimer: false,
     newTimerTitle: "",
   }
 
@@ -25,14 +26,12 @@ class NavDrawer extends Component {
     </ListItem>
   ))
 
-  toggleNewTimerModal = () => this.setState({ modalOpen: !this.state.modalOpen})
+  toggleNewTimerModal = () => this.setState({ addDisplayTimer: !this.state.addDisplayTimer})
   toggleNavDrawer = () => this.setState({ drawerOpen: !this.state.drawerOpen })
-  handleChange = (e) => this.setState({ newTimerTitle: e.target.value })
-  // handleBlur = (e) => this.toggleNewTimerModal()
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    this.props.newDisplayTimer(this.state.newTimerTitle)
+  handleSubmit = (event, title) => {
+    event.preventDefault()
+    this.props.newDisplayTimer(title)
     this.toggleNewTimerModal()
   }
 
@@ -43,7 +42,7 @@ class NavDrawer extends Component {
       timerList,
       toggleDrawer,
     } = this.props
-    // console.log('^^^', this.props)
+
     return (
       <Drawer
         type='persistent'
@@ -68,23 +67,13 @@ class NavDrawer extends Component {
           >
             <List disablePadding>
               {
-                this.state.modalOpen ?
-                  <form className="newDisplayTimerForm" onSubmit={ (e) => this.handleSubmit(e) }>
-                    <input
-                      type="text"
-                      placeholder="Title"
-                      value={ this.state.newTimerTitle }
-                      onChange={ (e) => this.handleChange(e) }
-                    />
-                  <input type="submit" value="Submit" />
-                  </form> :
+                this.state.addDisplayTimer ?
+                  <AddDisplayTimerForm handleSubmit={ this.handleSubmit } />:
                   <ListItem button onClick={ () => this.toggleNewTimerModal() }>
                     <ListItemText primary="new Timer" />
                   </ListItem>
               }
-              {
-                this.timerList(timerList)
-              }
+              { this.timerList(timerList) }
             </List>
           </Collapse>
         </List>
@@ -92,5 +81,3 @@ class NavDrawer extends Component {
     )
   }
 }
-
-export default NavDrawer

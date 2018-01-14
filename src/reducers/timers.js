@@ -58,8 +58,11 @@ function _toggleDisplayTimerOn(state, id) {
 }
 
 function _reduceRotateSubTimer(displayTimerArray, action) {
-  let nextIndex, temp, atEnd = false
   let { direction } = action
+  let nextIndex
+    , temp
+    , atEnd = false
+    
   displayTimerArray.subTimers = displayTimerArray.subTimers
     .map((subTimer, i, array) => {
       let { index, id } = subTimer

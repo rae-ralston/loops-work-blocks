@@ -6,11 +6,11 @@ export function convertSecToHMS(sec) {
   return [hours, minutes, seconds]
 }
 
-const convertHrsToSec = (hrs) => hrs * 60 * 60
-const convertMinToSec = (min) => min * 60
+const _convertHrsToSec = (hrs) => hrs * 60 * 60
+const _convertMinToSec = (min) => min * 60
 
 export function totalHMSToSec(h, m, s) {
-  return convertHrsToSec(h) + convertMinToSec(m) + s
+  return _convertHrsToSec(h) + _convertMinToSec(m) + s
 }
 
 export function padTimeForDisplay(time) {

@@ -5,6 +5,6 @@ export default function newSubTimer(displayTimerId, title, totalTime) {
     type: NEW_SUB_TIMER,
     displayTimerId,
     title,
-    totalTime
+    totalTime,
   }
 }

@@ -7,7 +7,7 @@ import SubTimer from './SubTimer'
 import AddSubTimerForm from './AddSubTimerForm'
 
 
-class CurrentTimer extends Component {
+export default class CurrentTimer extends Component {
   state = {
     isTicking: false,
     addSubTimer: false,
@@ -20,27 +20,28 @@ class CurrentTimer extends Component {
     newSubTimer(displayTimer.id, title, totalTime)
     this.toggleAddSubTimer()
   }
-
-
-  render() {
-    const { displayTimer, rotateSubTimer } = this.props
-    const subTimers = displayTimer.subTimers.map(timer => (
+  createSubTimers = (displayTimer) => displayTimer.subTimers
+    .map(timer => (
       <SubTimer
         displayTimerId={ displayTimer.id }
         timer={ timer }
         key={ 'st-' + displayTimer.id + timer.id }
-        rotateSubTimer={ rotateSubTimer }
+        rotateSubTimer={ this.props.rotateSubTimer }
         isTicking={ this.state.isTicking }
         toggleTicking={ this.toggleTicking }
       />
-    ))
-    console.log(this.props)
+    )
+  )
+
+
+  render() {
+    const { displayTimer } = this.props
     return (
       <div>
         <Typography type='display3' align='center' gutterBottom>
           { displayTimer.title }
         </Typography>
-        { subTimers }
+        { this.createSubTimers(displayTimer) }
         {
           this.state.addSubTimer ?
             <AddSubTimerForm handleAddSubTimer={ this.handleAddSubTimer } /> :
@@ -57,5 +58,3 @@ class CurrentTimer extends Component {
     )
   }
 }
-
-export default CurrentTimer

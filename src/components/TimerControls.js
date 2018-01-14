@@ -6,7 +6,7 @@ import SkipNextIcon from 'material-ui-icons/SkipNext'
 import PlayArrowIcon from 'material-ui-icons/PlayArrow'
 import PauseIcon from 'material-ui-icons/Pause'
 
-class TimerControls extends Component {
+export default class TimerControls extends Component {
   render() {
     const { toggleTicking, nextSubTimer, isTicking } = this.props
     return (
@@ -33,5 +33,3 @@ class TimerControls extends Component {
     )
   }
 }
-
-export default TimerControls

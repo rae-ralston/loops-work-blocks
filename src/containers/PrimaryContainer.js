@@ -9,8 +9,6 @@ class PrimaryContainer extends Component {
   render() {
     const { timerList, rotateSubTimer, newSubTimer } = this.props
     const currentTimer = timerList.filter(timer => timer.isDisplayed)
-
-    // console.log("primary container: ",this.props)
     return (
       <CurrentTimer
         displayTimer={ currentTimer[0] }

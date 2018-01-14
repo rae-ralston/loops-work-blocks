@@ -7,7 +7,7 @@ import Divider from 'material-ui/Divider'
 import TimerControls from './TimerControls'
 import { convertSecToHMS, padTimeForDisplay } from '../helpers'
 
-class SubTimer extends Component {
+export default class SubTimer extends Component {
   state = {
     timeLeft: this.props.timer.totalSeconds,
     interval: null,
@@ -67,5 +67,3 @@ class SubTimer extends Component {
     )
   }
 }
-
-export default SubTimer
