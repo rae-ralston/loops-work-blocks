@@ -90,9 +90,11 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 #### Specifications
 - [X] users can see display timers on the nav bar
   - [X] users can use sub timers
-  - [ ] sub timers automatically rotate and keep track of total rotations
+  - [X] sub timers automatically rotate and keep track of total rotations
 - [ ] local timer updates persist through page reload
-- [ ] users can download the app from the Chrome store
+- [ ] nav draw auto close on newSubTimer
+- [ ] users can edit the title of displayTimers
+- [ ] users can edit title or time of subTimers
 - [ ] users can read about the app on landing page at rachelralston.com
 - [ ] users can adjust the order of timers by dragging and dropping
 - [ ] users can choose color theme or background from [Unsplash api](https://unsplash.com/developers)
