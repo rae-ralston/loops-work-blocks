@@ -3,10 +3,11 @@ import { connect } from 'react-redux'
 
 import CurrentTimer from '../components/CurrentTimer'
 import rotateSubTimer from '../actions/rotateSubTimer'
+import newSubTimer from '../actions/newSubTimer'
 
 class PrimaryContainer extends Component {
   render() {
-    const { timerList, rotateSubTimer } = this.props
+    const { timerList, rotateSubTimer, newSubTimer } = this.props
     const currentTimer = timerList.filter(timer => timer.isDisplayed)
 
     // console.log("primary container: ",this.props)
@@ -14,6 +15,7 @@ class PrimaryContainer extends Component {
       <CurrentTimer
         displayTimer={ currentTimer[0] }
         rotateSubTimer={ rotateSubTimer }
+        newSubTimer={ newSubTimer }
       />
     )
   }
@@ -21,4 +23,7 @@ class PrimaryContainer extends Component {
 
 const mapStateToProps = state => ({ timerList: state })
 
-export default connect(mapStateToProps, { rotateSubTimer })(PrimaryContainer)
+export default connect(mapStateToProps, {
+  rotateSubTimer,
+  newSubTimer,
+})(PrimaryContainer)

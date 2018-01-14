@@ -69,14 +69,14 @@ class NavDrawer extends Component {
             <List disablePadding>
               {
                 this.state.modalOpen ?
-                  <form className="commentForm" onSubmit={ (e) => this.handleSubmit(e) }>
+                  <form className="newDisplayTimerForm" onSubmit={ (e) => this.handleSubmit(e) }>
                     <input
                       type="text"
                       placeholder="Title"
                       value={ this.state.newTimerTitle }
                       onChange={ (e) => this.handleChange(e) }
                     />
-                    <input type="submit" value="Post" />
+                  <input type="submit" value="Submit" />
                   </form> :
                   <ListItem button onClick={ () => this.toggleNewTimerModal() }>
                     <ListItemText primary="new Timer" />

@@ -2,9 +2,10 @@ import {
   DISPLAY_SINGLE_TIMER,
   ROTATE_SUB_TIMER,
   NEW_DISPLAY_TIMER,
+  NEW_SUB_TIMER
  } from '../constants'
 import data from '../data/data'
-import { createDisplayTimer } from '../data/helpers'
+import { createDisplayTimer, createSubTimer } from '../data/helpers'
 
 export default function timers(state=data, action) {
   console.log('hit reducer', action)
@@ -27,9 +28,23 @@ export default function timers(state=data, action) {
       })
 
     case NEW_DISPLAY_TIMER:
-      console.log('reducer: in new display timer')
-      let newTimer = createDisplayTimer(action.title)
-      return toggleDisplayTimerOn([...state, newTimer], newTimer.id)
+      let newSubTimer = createDisplayTimer(action.title)
+      return toggleDisplayTimerOn([...state, newSubTimer], newSubTimer.id)
+
+    case NEW_SUB_TIMER:
+      console.log('reducer: in new sub timer', action)
+      return state.map( displayTimer => {
+        if (displayTimer.id === action.displayTimerId) {
+          let index = displayTimer.subTimers.length
+          let newDisplayTimer = createSubTimer(action.totalTime, false, action.title, index)
+          return {
+            ...displayTimer,
+            subTimers: [...displayTimer.subTimers, newDisplayTimer]
+          }
+        }
+        return displayTimer
+      })
+      // return state
 
     default:
       return state
