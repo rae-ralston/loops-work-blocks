@@ -1,6 +1,6 @@
-# Looping Timer
+# Looping Timer ⏳
 
-Use this chrome extension to create customized revolving time blocks.
+Use this chrome extension to create customized revolving time blocks. Great tool for tracking customized [pomodoros](https://en.wikipedia.org/wiki/Pomodoro_Technique)!
 
 ## Getting Started
 
@@ -69,10 +69,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Rachel Ralston** - *Initial work*
-  - [rachel-ftw](https://github.com/rachel-ftw)
-    + [linkedin](http://www.linkedin.com/in/rachelralston)
-    + [website](http://www.rachelralston.com)
+* **Rachel Ralston** - *Initial work* - [github](https://github.com/rachel-ftw),  [linkedin](http://www.linkedin.com/in/rachelralston), [website](http://www.rachelralston.com)
 
 See also the list of [contributors](https://github.com/rachel-ftw/looping-timer/contributors) who participated in this project.
 
@@ -83,24 +80,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Inspired by [Timer Loop](https://chrome.google.com/webstore/detail/timer-loop/mdkfiefeoimmobmhdimachkfcpkgahlc?hl=en)
-
----
-
-### Development
-#### Specifications
-- [X] users can see display timers on the nav bar
-  - [X] users can use sub timers
-  - [X] sub timers automatically rotate and keep track of total rotations
-- [ ] local timer updates persist through page reload
-- [ ] nav draw auto close on newSubTimer
-- [ ] users can edit the title of displayTimers
-- [ ] users can edit title or time of subTimers
-- [ ] users can read about the app on landing page at rachelralston.com
-- [ ] users can adjust the order of timers by dragging and dropping
-- [ ] users can choose color theme or background from [Unsplash api](https://unsplash.com/developers)
-
-WIP
-- figure out MUI's withStyles HOC
-  - work with this on [nested nav](https://codesandbox.io/s/v806y321yy)
-  - [api](https://material-ui-next.com/customization/css-in-js/#withstyles-styles-options-higher-order-component)
-  - [overrides](https://material-ui-next.com/customization/overrides/)
