@@ -5,7 +5,7 @@ const data = [
     id: 1,
     title: 'serious list',
     isDisplayed: true,
-    subTimerCount: 0,
+    loopsMade: 0,
     subTimers: [
       createSubTimer(3, true, 'rest', 1),
       createSubTimer(3, false, 'do', 2),
@@ -18,7 +18,7 @@ const data = [
     id: 2,
     title: 'fruits list',
     isDisplayed: false,
-    subTimerCount: 0,
+    loopsMade: 0,
     subTimers: [
       createSubTimer(300, false, 'apple', 1),
       createSubTimer(1200, true, 'orange', 2),

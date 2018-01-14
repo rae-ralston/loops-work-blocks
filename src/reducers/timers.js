@@ -3,6 +3,7 @@ import {
   ROTATE_SUB_TIMER,
   NEW_DISPLAY_TIMER,
   NEW_SUB_TIMER,
+  INCREMENT_LOOPS_MADE,
  } from '../constants'
 import data from '../data/data'
 import { createDisplayTimer, createSubTimer } from '../data/helpers'
@@ -45,6 +46,17 @@ export default function timers(state=data, action) {
         return displayTimer
       })
 
+    case INCREMENT_LOOPS_MADE:
+      return state.map( displayTimer => {
+        if (displayTimer.id === action.displayTimerId) {
+          return {
+            ...displayTimer,
+            loopsMade: displayTimer.loopsMade + 1
+          }
+        }
+        return displayTimer
+      })
+
     default:
       return state
   }
@@ -62,7 +74,7 @@ function _reduceRotateSubTimer(displayTimerArray, action) {
   let nextIndex
     , temp
     , atEnd = false
-    
+
   displayTimerArray.subTimers = displayTimerArray.subTimers
     .map((subTimer, i, array) => {
       let { index, id } = subTimer

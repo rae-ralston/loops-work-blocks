@@ -20,6 +20,14 @@ export default class CurrentTimer extends Component {
     newSubTimer(displayTimer.id, title, totalTime)
     this.toggleAddSubTimer()
   }
+
+  checkIfLastSubTimer = (timer) => {
+    const { displayTimer, incrementLoopsMade } = this.props
+    if (displayTimer.subTimers.length === timer.index) {
+      incrementLoopsMade(displayTimer.id)
+    }
+  }
+
   createSubTimers = (displayTimer) => displayTimer.subTimers
     .map(timer => (
       <SubTimer
@@ -29,6 +37,7 @@ export default class CurrentTimer extends Component {
         rotateSubTimer={ this.props.rotateSubTimer }
         isTicking={ this.state.isTicking }
         toggleTicking={ this.toggleTicking }
+        checkIfLastSubTimer={ this.checkIfLastSubTimer }
       />
     )
   )
@@ -40,6 +49,9 @@ export default class CurrentTimer extends Component {
       <div>
         <Typography type='display3' align='center' gutterBottom>
           { displayTimer.title }
+        </Typography>
+        <Typography type='caption' align='center' gutterBottom>
+          { displayTimer.loopsMade + " loops made." }
         </Typography>
         { this.createSubTimers(displayTimer) }
         {

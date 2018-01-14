@@ -18,6 +18,7 @@ export function createDisplayTimer(title) {
     id: _incrementTimerId('display'),
     title,
     isDisplayed: false,
+    loopsMade: 0,
     subTimerCount: 0,
     subTimers: [],
   }
