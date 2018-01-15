@@ -22,6 +22,10 @@ export default class CurrentTimer extends Component {
     this.setState({ displayTitle: this.props.displayTimer.title})
   }
 
+  componentWillReceiveProps(newProps) {
+    this.setState({ displayTitle: newProps.displayTimer.title})
+  }
+
   toggleTicking = () => this.setState({ isTicking: !this.state.isTicking })
   toggleAddSubTimer = () => this.setState({ addSubTimer: !this.state.addSubTimer})
   toggleEditingDisplayTitle = () => this.setState({ editingDisplayTitle: !this.state.editingDisplayTitle})
