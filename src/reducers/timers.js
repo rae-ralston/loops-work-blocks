@@ -4,6 +4,7 @@ import {
   NEW_DISPLAY_TIMER,
   NEW_SUB_TIMER,
   INCREMENT_LOOPS_MADE,
+  UPDATE_DISPLAY_TIMER_TITLE,
  } from '../constants'
 import data from '../data/data'
 import { createDisplayTimer, createSubTimer } from '../data/helpers'
@@ -52,6 +53,17 @@ export default function timers(state=data, action) {
           return {
             ...displayTimer,
             loopsMade: displayTimer.loopsMade + 1
+          }
+        }
+        return displayTimer
+      })
+
+    case UPDATE_DISPLAY_TIMER_TITLE:
+      return state.map( displayTimer => {
+        if (displayTimer.id === action.displayTimerId) {
+          return {
+            ...displayTimer,
+            title: action.title
           }
         }
         return displayTimer
