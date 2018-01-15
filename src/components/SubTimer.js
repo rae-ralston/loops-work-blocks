@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import Typography from 'material-ui/Typography'
 import Card from 'material-ui/Card'
@@ -67,4 +68,22 @@ export default class SubTimer extends Component {
       </Card>
     )
   }
+}
+
+SubTimer.propTypes = {
+  checkIfLastSubTimer: PropTypes.func,
+  displayTimerId: PropTypes.number,
+  isTicking: PropTypes.bool,
+  rotateSubTimer: PropTypes.func,
+  toggleTicking: PropTypes.func,
+  timer: PropTypes.shape({
+    id: PropTypes.number,
+    index: PropTypes.number,
+    hours: PropTypes.number,
+    min: PropTypes.number,
+    sec: PropTypes.number,
+    isCurrent: PropTypes.bool,
+    totalSeconds: PropTypes.number,
+    title: PropTypes.string,
+  }),
 }
