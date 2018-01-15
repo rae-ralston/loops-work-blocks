@@ -1,14 +1,14 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+
 import Typography from 'material-ui/Typography'
 import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
-
 import AddIcon from 'material-ui-icons/Add'
 import EditIcon from 'material-ui-icons/Edit'
 
 import SubTimer from './SubTimer'
 import AddSubTimerForm from './AddSubTimerForm'
-
 
 export default class CurrentTimer extends Component {
   state = {
@@ -99,4 +99,18 @@ export default class CurrentTimer extends Component {
       </div>
     )
   }
+}
+
+CurrentTimer.propTypes = {
+  displayTimer: PropTypes.shape({
+    id: PropTypes.number,
+    isDisplayed: PropTypes.bool,
+    loopsMade: PropTypes.number,
+    subTimers: PropTypes.arrayOf(PropTypes.object),
+    title: PropTypes.string,
+  }),
+  incrementLoopsMade: PropTypes.func,
+  newSubTimer: PropTypes.func,
+  rotateSubTimer: PropTypes.func,
+  updateisplayTimerTitle: PropTypes.func,
 }

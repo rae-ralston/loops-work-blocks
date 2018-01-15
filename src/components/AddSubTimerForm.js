@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import Button from 'material-ui/Button'
 import Card from 'material-ui/Card'
@@ -41,19 +42,19 @@ export default class AddSubTimerForm extends Component {
           <TimePicker
             type="hours"
             data={ hrs }
-            state={ hours }
+            current={ hours }
             handleChange={ this.handleChange }
           />
           <TimePicker
             type="minutes"
             data={ min }
-            state={ minutes }
+            current={ minutes }
             handleChange={ this.handleChange }
           />
           <TimePicker
             type="seconds"
             data={ sec }
-            state={ seconds }
+            current={ seconds }
             handleChange={ this.handleChange }
           />
           <br/>
@@ -64,4 +65,8 @@ export default class AddSubTimerForm extends Component {
       </Card>
     )
   }
+}
+
+AddSubTimerForm.propTypes = {
+  handleAddSubTimer: PropTypes.func,
 }

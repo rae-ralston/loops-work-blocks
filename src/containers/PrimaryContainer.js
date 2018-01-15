@@ -32,7 +32,7 @@ class PrimaryContainer extends Component {
 }
 
 PrimaryContainer.propTypes = {
-  timerList: PropTypes.array,
+  timerList: PropTypes.arrayOf(PropTypes.object),
   rotateSubTimer: PropTypes.func,
   incrementLoopsMade: PropTypes.func,
   newSubTimer: PropTypes.func,

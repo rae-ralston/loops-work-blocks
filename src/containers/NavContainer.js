@@ -36,7 +36,7 @@ class NavContainer extends Component {
 }
 
 NavContainer.propTypes = {
-  timerList: PropTypes.array,
+  timerList: PropTypes.arrayOf(PropTypes.object),
   displaySingleTimer: PropTypes.func,
   newDisplayTimer: PropTypes.func,
 }

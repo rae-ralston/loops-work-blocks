@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import IconButton from 'material-ui/IconButton'
 import SkipPreviousIcon from 'material-ui-icons/SkipPrevious'
@@ -9,6 +10,7 @@ import PauseIcon from 'material-ui-icons/Pause'
 export default class TimerControls extends Component {
   render() {
     const { toggleTicking, nextSubTimer, isTicking } = this.props
+
     return (
       <div align='center'>
         <IconButton
@@ -33,3 +35,11 @@ export default class TimerControls extends Component {
     )
   }
 }
+
+TimerControls.propTypes = {
+  toggleTicking: PropTypes.func,
+  nextSubTimer: PropTypes.func,
+  isTicking: PropTypes.number,
+}
+
+//TODO WHY ISN"T HTIS WORKING???

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
 
@@ -31,4 +33,8 @@ export default class AddDisplayTimerForm extends Component{
       </form>
     )
   }
+}
+
+AddDisplayTimerForm.propTypes = {
+  handleSubmit: PropTypes.func
 }

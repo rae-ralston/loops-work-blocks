@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import Drawer from 'material-ui/Drawer'
 import List, { ListItem, ListItemText } from 'material-ui/List'
@@ -82,4 +83,12 @@ export default class NavDrawer extends Component {
       </Drawer>
     )
   }
+}
+
+NavDrawer.propTypes = {
+  displayTimer: PropTypes.func,
+  isDrawerOpen: PropTypes.bool,
+  newDisplayTimer: PropTypes.func,
+  timerList: PropTypes.array,
+  toggleDrawer: PropTypes.func,
 }
