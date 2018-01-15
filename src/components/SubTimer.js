@@ -41,7 +41,6 @@ export default class SubTimer extends Component {
 
   render() {
     const { timer, toggleTicking } = this.props
-    // console.log('$$$', this.props)
     let HMS = convertSecToHMS(this.state.timeLeft)
     timer.hours = HMS[0]
     timer.min = HMS[1]

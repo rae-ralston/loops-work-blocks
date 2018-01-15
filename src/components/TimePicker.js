@@ -8,7 +8,6 @@ import { padTimeForDisplay } from '../helpers'
 
 const TimePicker = props => {
   const { type, data, handleChange, current } = props
-  console.log(">>>>",props)
 
   return (
     <TextField
