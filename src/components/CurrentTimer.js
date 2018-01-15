@@ -80,7 +80,7 @@ export default class CurrentTimer extends Component {
               onChange={ (e) => this.handleChange(e) }
               onKeyPress={ (e) => this.handleKeyPress(e) }
             /> :
-            this.props.displayTimer.title
+            this.state.displayTitle
           }
           <EditIcon onClick={ () => this.toggleEditingDisplayTitle() } />
         </Typography>
