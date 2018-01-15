@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import CurrentTimer from '../components/CurrentTimer'
 import rotateSubTimer from '../actions/rotateSubTimer'
@@ -28,6 +29,14 @@ class PrimaryContainer extends Component {
       />
     )
   }
+}
+
+PrimaryContainer.propTypes = {
+  timerList: PropTypes.array,
+  rotateSubTimer: PropTypes.func,
+  incrementLoopsMade: PropTypes.func,
+  newSubTimer: PropTypes.func,
+  updateDisplayTimerTitle: PropTypes.func,
 }
 
 const mapStateToProps = state => ({ timerList: state })

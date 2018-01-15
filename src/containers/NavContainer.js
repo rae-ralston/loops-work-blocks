@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+
 import Menu from 'material-ui-icons/Menu'
 
 import NavDrawer from '../components/NavDrawer'
@@ -17,6 +19,7 @@ class NavContainer extends Component {
 
   render() {
     const { timerList, newDisplayTimer } = this.props
+
     return (
       <div>
         <Menu onClick={ this.toggleDrawer } />
@@ -30,6 +33,12 @@ class NavContainer extends Component {
       </div>
     )
   }
+}
+
+NavContainer.propTypes = {
+  timerList: PropTypes.array,
+  displaySingleTimer: PropTypes.func,
+  newDisplayTimer: PropTypes.func,
 }
 
 const mapStateToProps = state => ({ timerList: state })
