@@ -30,8 +30,10 @@ export default class NavDrawer extends Component {
   toggleNavDrawer = () => this.setState({ drawerOpen: !this.state.drawerOpen })
 
   handleSubmit = (event, title) => {
+    const { newDisplayTimer, toggleDrawer } = this.props
     event.preventDefault()
-    this.props.newDisplayTimer(title)
+    newDisplayTimer(title)
+    toggleDrawer()
     this.toggleNewTimerModal()
   }
 
