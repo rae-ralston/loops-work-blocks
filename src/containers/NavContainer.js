@@ -41,7 +41,10 @@ NavContainer.propTypes = {
   newDisplayTimer: PropTypes.func,
 }
 
-const mapStateToProps = state => ({ timerList: state })
+const mapStateToProps = state => {
+  console.log('nav container: ', state)
+  return ({ timerList: state })
+}
 
 export default connect(mapStateToProps, {
   displaySingleTimer,

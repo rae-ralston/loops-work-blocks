@@ -2,12 +2,23 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import registerServiceWorker from './registerServiceWorker'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, compose, applyMiddleware } from 'redux'
 
 import App from './App'
 import timers from './reducers/timers'
 
-let store = createStore(timers)
+const middleware = []
+const enhancers = []
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+let store = createStore(
+  timers,
+  composeEnhancers(
+    applyMiddleware(...middleware),
+    ...enhancers
+  )
+)
+
 
 ReactDOM.render(
   <Provider store={ store }>

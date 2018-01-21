@@ -6,8 +6,8 @@ import {
   INCREMENT_LOOPS_MADE,
   UPDATE_DISPLAY_TIMER_TITLE,
  } from '../constants'
-import data from '../data/data'
-import { createDisplayTimer, createSubTimer } from '../data/helpers'
+import data from '../lib/data'
+import { createDisplayTimer, createSubTimer } from '../lib/helpers'
 
 export default function timers(state=data, action) {
   console.log('hit reducer', action)

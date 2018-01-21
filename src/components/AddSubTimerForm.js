@@ -5,7 +5,7 @@ import Button from 'material-ui/Button'
 import Card from 'material-ui/Card'
 import TextField from 'material-ui/TextField'
 
-import { hrs, min, sec } from '../data/helpers'
+import { hrs, min, sec } from '../lib/helpers'
 import { totalHMSToSec } from '../helpers'
 import TimePicker from './TimePicker'
 
