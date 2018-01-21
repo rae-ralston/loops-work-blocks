@@ -6,7 +6,7 @@ import Card from 'material-ui/Card'
 import TextField from 'material-ui/TextField'
 
 import { hrs, min, sec } from '../lib/helpers'
-import { totalHMSToSec } from '../helpers'
+import { totalHMSToSec } from '../lib/timeHelpers'
 import TimePicker from './TimePicker'
 
 export default class AddSubTimerForm extends Component {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import TextField from 'material-ui/TextField'
 import MenuItem from 'material-ui/Menu/MenuItem'
 
-import { padTimeForDisplay } from '../helpers'
+import { padTimeForDisplay } from '../lib/timeHelpers'
 
 const TimePicker = props => {
   const { type, data, handleChange, current } = props

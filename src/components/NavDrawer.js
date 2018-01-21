@@ -76,7 +76,6 @@ export default class NavDrawer extends Component {
                     <ListItemText primary="new Timer" />
                   </ListItem>
               }
-              { this.timerList(timerList) }
             </List>
           </Collapse>
         </List>
@@ -84,6 +83,7 @@ export default class NavDrawer extends Component {
     )
   }
 }
+// { this.timerList(timerList) }
 
 NavDrawer.propTypes = {
   displayTimer: PropTypes.func,

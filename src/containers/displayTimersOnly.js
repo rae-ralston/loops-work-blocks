@@ -1,4 +1,7 @@
 import connect from 'react-redux'
+import NavContainer from './NavContainer'
+import displaySingleTimer from '../actions/displaySingleTimer'
+import newDisplayTimer from '../actions/newDisplayTimer'
 
 const mapStateToProps = (state) => {
   let newState = state.map(displayTimer => {
