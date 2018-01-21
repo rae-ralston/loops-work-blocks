@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import NavContainer from './containers/NavContainer'
+import NavContainer from './components/NavContainer'
 import PrimaryContainer from './containers/PrimaryContainer'
 import 'typeface-roboto'
 
@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavContainer/>
+        <NavContainer />
         <PrimaryContainer />
       </div>
     );

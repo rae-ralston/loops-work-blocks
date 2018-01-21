@@ -18,16 +18,17 @@ export default class NavDrawer extends Component {
     newTimerTitle: "",
   }
 
-  timerList = (timers) => timers.map(timer => (
-    <ListItem button
-      key={ timer.id }
-      onClick={ () => this.props.displayTimer(timer.id) }
-    >
-      <ListItemText primary={ timer.title } />
-    </ListItem>
-  ))
+  // timerList = (timers) => timers.map(timer => (
+  //   <ListItem button
+  //     key={ timer.id }
+  //     onClick={ () => this.props.displayTimer(timer.id) }
+  //   >
+  //     <ListItemText primary={ timer.title } />
+  //   </ListItem>
+  // ))
 
   toggleNewTimerModal = () => this.setState({ addDisplayTimer: !this.state.addDisplayTimer})
+
   toggleNavDrawer = () => this.setState({ drawerOpen: !this.state.drawerOpen })
 
   handleSubmit = (event, title) => {
@@ -42,10 +43,10 @@ export default class NavDrawer extends Component {
     const { drawerOpen } = this.state
     const {
       isDrawerOpen,
-      timerList,
+      // timerList,
       toggleDrawer,
     } = this.props
-
+    console.log('navDrawer: ',this.props)
     return (
       <Drawer
         type='persistent'
