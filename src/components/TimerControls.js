@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import IconButton from 'material-ui/IconButton'
@@ -7,33 +7,31 @@ import SkipNextIcon from 'material-ui-icons/SkipNext'
 import PlayArrowIcon from 'material-ui-icons/PlayArrow'
 import PauseIcon from 'material-ui-icons/Pause'
 
-export default class TimerControls extends Component {
-  render() {
-    const { toggleTicking, nextSubTimer, isTicking } = this.props
+export const TimerControls = (props) => {
+  const { toggleTicking, nextSubTimer, isTicking } = props
 
-    return (
-      <div align='center'>
-        <IconButton
-          onClick={ () => nextSubTimer('prev')}
-          aria-label="Previous"
+  return (
+    <div align='center'>
+      <IconButton
+        onClick={ () => nextSubTimer('prev')}
+        aria-label="Previous"
+      >
+        <SkipPreviousIcon />
+      </IconButton>
+      <IconButton
+        onClick={ () => toggleTicking() }
+        aria-label="Play/pause"
         >
-          <SkipPreviousIcon />
-        </IconButton>
-        <IconButton
-          onClick={ () => toggleTicking() }
-          aria-label="Play/pause"
-          >
-          { isTicking ? <PauseIcon /> : <PlayArrowIcon />}
-        </IconButton>
-        <IconButton
-          onClick={ () => nextSubTimer('next') }
-          aria-label="Next"
-        >
-          <SkipNextIcon />
-        </IconButton>
-      </div>
-    )
-  }
+        { isTicking ? <PauseIcon /> : <PlayArrowIcon />}
+      </IconButton>
+      <IconButton
+        onClick={ () => nextSubTimer('next') }
+        aria-label="Next"
+      >
+        <SkipNextIcon />
+      </IconButton>
+    </div>
+  )
 }
 
 TimerControls.propTypes = {
@@ -41,5 +39,3 @@ TimerControls.propTypes = {
   nextSubTimer: PropTypes.func,
   isTicking: PropTypes.number,
 }
-
-//TODO WHY ISN"T HTIS WORKING???
