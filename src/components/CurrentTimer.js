@@ -71,6 +71,7 @@ export default class CurrentTimer extends Component {
 
   render() {
     const { displayTimer } = this.props
+    
     return (
       <div>
         <Typography type='display3' align='center' gutterBottom>

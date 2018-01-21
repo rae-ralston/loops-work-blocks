@@ -27,9 +27,11 @@ export default class Nav extends Component {
     </ListItem>
   ))
 
-  toggleNewTimerModal = () => this.setState({ addDisplayTimer: !this.state.addDisplayTimer})
+  toggleNewTimerModal = () =>
+    this.setState({ addDisplayTimer: !this.state.addDisplayTimer})
 
-  toggleTimerDropDown = () => this.setState({ isTimerDropDownOpen: !this.state.isTimerDropDownOpen })
+  toggleTimerDropDown = () =>
+    this.setState({ isTimerDropDownOpen: !this.state.isTimerDropDownOpen })
 
   handleSubmit = (event, title) => {
     const { newDisplayTimer, toggleDrawer } = this.props
@@ -46,7 +48,7 @@ export default class Nav extends Component {
       timerList,
       toggleDrawer,
     } = this.props
-    console.log('navDrawer: ',this.props)
+
     return (
       <Drawer
         type='persistent'

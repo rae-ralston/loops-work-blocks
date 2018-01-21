@@ -34,6 +34,7 @@ export default class SubTimer extends Component {
 
   nextSubTimer = (direction) => {
     const { rotateSubTimer, timer } = this.props
+    
     this.setState({ timeLeft: this.props.timer.totalSeconds })
     this.props.checkIfLastSubTimer(timer)
     rotateSubTimer(this.props.displayTimerId, this.props.timer.id, direction)
@@ -51,7 +52,9 @@ export default class SubTimer extends Component {
         <div>
           <Typography type='title' align='center'>{ timer.title }</Typography>
           <Typography type='subheading' align='center'>
-            { padTimeForDisplay(timer.hours) } : { padTimeForDisplay(timer.min) } : { padTimeForDisplay(timer.sec) }
+            { padTimeForDisplay(timer.hours) }
+            :{ padTimeForDisplay(timer.min) }
+            :{ padTimeForDisplay(timer.sec) }
           </Typography>
         </div>
         {

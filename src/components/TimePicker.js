@@ -6,7 +6,7 @@ import MenuItem from 'material-ui/Menu/MenuItem'
 
 import { padTimeForDisplay } from '../lib/timeHelpers'
 
-const TimePicker = props => {
+export const TimePicker = props => {
   const { type, data, handleChange, current } = props
 
   return (
@@ -35,5 +35,3 @@ TimePicker.propTypes = {
   current: PropTypes.number,
   type: PropTypes.string,
 }
-
-export default TimePicker

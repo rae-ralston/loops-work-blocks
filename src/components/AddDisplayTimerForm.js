@@ -14,6 +14,7 @@ export default class AddDisplayTimerForm extends Component{
   render() {
     const { handleSubmit } = this.props
     const { title } = this.state
+
     return (
       <form
       className="newDisplayTimerForm"
