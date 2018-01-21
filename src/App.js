@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
+import 'typeface-roboto'
 
 import NavDrawer from './components/NavDrawer'
-// import DisplayTimersOnly from './containers/DisplayTimersOnly'
 import PrimaryContainer from './containers/PrimaryContainer'
-import 'typeface-roboto'
 
 class App extends Component {
   render() {
