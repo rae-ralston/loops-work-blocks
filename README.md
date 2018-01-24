@@ -28,7 +28,7 @@ npm start
 
 ## Running the tests
 
-To run the tests:
+To run the tests:atom
 ```
 npm test
 ```
