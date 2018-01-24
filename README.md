@@ -28,6 +28,10 @@ npm start
 
 ## Running the tests
 
+To run the tests:
+```
+npm test
+```
 <!-- Explain how to run the automated tests for this system
 
 ### Break down into end to end tests
