@@ -26,18 +26,18 @@ export default class CurrentTimer extends Component {
     this.setState({ displayTitle: newProps.displayTimer.title})
   }
 
-  toggleTicking = () => 
+  toggleTicking = () =>
     this.setState({ isTicking: !this.state.isTicking })
 
-  toggleAddSubTimer = () => 
+  toggleAddSubTimer = () =>
     this.setState({ addSubTimer: !this.state.addSubTimer})
 
-  toggleEditingDisplayTitle = () => 
+  toggleEditingDisplayTitle = () =>
     this.setState({ editingDisplayTitle: !this.state.editingDisplayTitle})
 
-  handleChange = (event) => 
+  handleChange = (event) =>
     this.setState({ displayTitle: event.target.value })
-  
+
   handleAddSubTimer = (title, totalTime) => {
     const { newSubTimer, displayTimer } = this.props
     newSubTimer(displayTimer.id, title, totalTime)
@@ -75,7 +75,7 @@ export default class CurrentTimer extends Component {
 
   render() {
     const { displayTimer } = this.props
-    
+
     return (
       <div>
         <Typography type='display3' align='center' gutterBottom>
