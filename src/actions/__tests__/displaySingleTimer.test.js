@@ -1,5 +1,8 @@
+import displaySingleTimer from '../displaySingleTimer'
+import { DISPLAY_SINGLE_TIMER } from '../../constants'
 
-it('sums numbers', () => {
-  expect(1 + 2).toEqual(3);
-  expect(2 + 2).toEqual(4);
+it('Creates the displaySingleTimer Action', () => {
+  let createdAction = displaySingleTimer(3)
+  let action = { type: DISPLAY_SINGLE_TIMER, displayTimerId: 3 }
+  expect(createdAction).toEqual(action);
 });
