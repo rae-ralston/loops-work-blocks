@@ -8,8 +8,8 @@ import {
 } from '../constants'
 import { _toggleDisplayTimerOn, _reduceRotateSubTimer } from './helpers'
 
-import data from '../lib/data'
-import { createDisplayTimer, createSubTimer } from '../lib/helpers'
+import data from '../../lib/data'
+import { createDisplayTimer, createSubTimer } from '../../lib/helpers'
 
 export default function timers(state=data, action) {
   switch (action.type) {

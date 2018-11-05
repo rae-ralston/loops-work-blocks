@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Button from 'material-ui/Button'
 import Card from 'material-ui/Card'
 import TextField from 'material-ui/TextField'
 
-import { hrs, min, sec } from '../lib/helpers'
-import { totalHMSToSec } from '../lib/timeHelpers'
+import Button from '../library/Button'
+import { hrs, min, sec } from '../../lib/helpers'
+import { totalHMSToSec } from '../../lib/timeHelpers'
 import { TimePicker } from './TimePicker'
 
 export default class AddSubTimerForm extends Component {
@@ -63,7 +63,7 @@ export default class AddSubTimerForm extends Component {
             handleChange={ this.handleChange }
           />
           <br/>
-          <Button raised color="primary" type="submit">Submit</Button>
+          <Button color="primary" type="submit">Submit</Button>
         </form>
       </Card>
     )

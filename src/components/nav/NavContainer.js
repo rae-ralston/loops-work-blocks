@@ -1,9 +1,9 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 
-import Nav from '../components/Nav'
-import displaySingleTimer from '../actions/displaySingleTimer'
-import newDisplayTimer from '../actions/newDisplayTimer'
+import Nav from './Nav'
+import displaySingleTimer from '../../store/actions/displaySingleTimer'
+import newDisplayTimer from '../../store/actions/newDisplayTimer'
 
 const mapStateToProps = (state) => ({ timerList: state })
 

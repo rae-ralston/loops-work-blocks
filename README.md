@@ -1,6 +1,6 @@
 # Looping Timer ⏳
 
-Use this chrome extension to create customized revolving time blocks. Great tool for tracking customized [pomodoros](https://en.wikipedia.org/wiki/Pomodoro_Technique)!
+This is a flexible and customizable timer that will help you sink into a great work day. With this tool you can create and track customized time blocks. Great for tracking [pomodoros](https://en.wikipedia.org/wiki/Pomodoro_Technique)!
 
 ## Getting Started
 
