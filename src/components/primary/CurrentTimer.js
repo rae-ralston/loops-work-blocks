@@ -22,21 +22,18 @@ export default class CurrentTimer extends Component {
     this.setState({ displayTitle: this.props.displayTimer.title})
   }
 
-  componentWillReceiveProps(newProps) {
+  static getDerivedStateFromProps(newProps) {
     this.setState({ displayTitle: newProps.displayTimer.title})
   }
 
-  toggleTicking = () =>
-    this.setState({ isTicking: !this.state.isTicking })
+  toggleTicking = () => this.setState({ isTicking: !this.state.isTicking })
 
-  toggleAddSubTimer = () =>
-    this.setState({ addSubTimer: !this.state.addSubTimer})
+  toggleAddSubTimer = () => this.setState({ addSubTimer: !this.state.addSubTimer})
 
-  toggleEditingDisplayTitle = () =>
+  toggleEditingDisplayTitle = () => 
     this.setState({ editingDisplayTitle: !this.state.editingDisplayTitle})
 
-  handleChange = (event) =>
-    this.setState({ displayTitle: event.target.value })
+  handleChange = (event) => this.setState({ displayTitle: event.target.value })
 
   handleAddSubTimer = (title, totalTime) => {
     const { newSubTimer, displayTimer } = this.props
@@ -100,7 +97,7 @@ export default class CurrentTimer extends Component {
           this.state.addSubTimer ?
             <AddSubTimerForm handleAddSubTimer={ this.handleAddSubTimer } /> :
             <Button
-              fab dense mini
+              mini
               color="primary"
               aria-label="add"
               onClick={ () => this.toggleAddSubTimer() }

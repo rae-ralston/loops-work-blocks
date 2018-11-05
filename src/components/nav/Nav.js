@@ -11,7 +11,7 @@ import ExpandMore from 'material-ui-icons/ExpandMore'
 
 import AddDisplayTimerForm from './AddDisplayTimerForm'
 
-export default class Nav extends Component {
+class Nav extends Component {
   state = {
     isTimerDropDownOpen: true,
     addDisplayTimer: false,
@@ -43,11 +43,7 @@ export default class Nav extends Component {
 
   render() {
     const { isTimerDropDownOpen } = this.state
-    const {
-      isDrawerOpen,
-      timerList,
-      toggleDrawer,
-    } = this.props
+    const { isDrawerOpen, timerList, toggleDrawer } = this.props
 
     return (
       <Drawer
@@ -101,3 +97,5 @@ Nav.defaultProps = {
   addDisplayTimer: false,
   newTimerTitle: "",
 }
+
+export default Nav
