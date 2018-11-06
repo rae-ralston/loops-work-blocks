@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Menu from 'material-ui-icons/Menu'
 
-import NavContainer from '../containers/NavContainer'
+import NavContainer from './NavContainer'
 
 class NavDrawer extends Component {
   state = { open: false }

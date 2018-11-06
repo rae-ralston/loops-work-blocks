@@ -6,7 +6,7 @@ import Divider from 'material-ui/Divider'
 import Typography from 'material-ui/Typography'
 
 import { TimerControls } from './TimerControls'
-import { convertSecToHMS, padTimeForDisplay } from '../lib/timeHelpers'
+import { convertSecToHMS, padTimeForDisplay } from '../../lib/timeHelpers'
 
 export default class SubTimer extends Component {
   state = {

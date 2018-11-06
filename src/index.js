@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { createStore, compose, applyMiddleware } from 'redux'
 
 import App from './App'
-import timers from './reducers/timers'
+import timers from './store/reducers/timers'
 
 const middleware = []
 const enhancers = []
