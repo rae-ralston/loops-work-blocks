@@ -9,7 +9,7 @@ import ChevronLeftIcon from 'material-ui-icons/ChevronLeft'
 import ExpandLess from 'material-ui-icons/ExpandLess'
 import ExpandMore from 'material-ui-icons/ExpandMore'
 
-import AddDisplayTimerForm from './AddDisplayTimerForm'
+import AddTimer from '../add-timer/AddTimer type="display"'
 
 class Nav extends Component {
   state = {
@@ -18,7 +18,7 @@ class Nav extends Component {
     newTimerTitle: "",
   }
 
-  timerList = (timers) => timers.map(timer => (
+  timerList = timers => timers.map(timer => (
     <ListItem button
       key={ timer.id }
       onClick={ () => this.props.displaySingleTimer(timer.id) }
@@ -70,7 +70,7 @@ class Nav extends Component {
             <List disablePadding>
               {
                 this.state.addDisplayTimer ?
-                  <AddDisplayTimerForm handleSubmit={ this.handleSubmit } />:
+                  <AddTimer type="display" handleSubmit={ this.handleSubmit } />:
                   <ListItem button onClick={ () => this.toggleNewTimerModal() }>
                     <ListItemText primary="new Timer" />
                   </ListItem>

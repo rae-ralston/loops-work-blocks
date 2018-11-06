@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Card from 'material-ui/Card'
 import TextField from 'material-ui/TextField'
 
-import Button from '../library/Button'
+import Button from '../common/Button'
 import { hrs, min, sec } from '../../lib/helpers'
 import { totalHMSToSec } from '../../lib/timeHelpers'
 import { TimePicker } from './TimePicker'

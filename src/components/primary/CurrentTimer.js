@@ -7,7 +7,7 @@ import Typography from 'material-ui/Typography'
 import AddIcon from 'material-ui-icons/Add'
 import EditIcon from 'material-ui-icons/Edit'
 
-import AddSubTimerForm from './AddSubTimerForm'
+import AddTimer from '../add-timer/AddTimer'
 import SubTimer from './SubTimer'
 
 export default class CurrentTimer extends Component {
@@ -95,9 +95,8 @@ export default class CurrentTimer extends Component {
         { this.createSubTimers(displayTimer) }
         {
           this.state.addSubTimer ?
-            <AddSubTimerForm handleAddSubTimer={ this.handleAddSubTimer } /> :
+            <AddTimer type="sub" handleAddSubTimer={ this.handleAddSubTimer } /> :
             <Button
-              mini
               color="primary"
               aria-label="add"
               onClick={ () => this.toggleAddSubTimer() }

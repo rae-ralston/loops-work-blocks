@@ -7,12 +7,10 @@ import newDisplayTimer from '../../store/actions/newDisplayTimer'
 
 const mapStateToProps = (state) => ({ timerList: state })
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    displaySingleTimer,
-    newDisplayTimer
-  }, dispatch)
-};
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  displaySingleTimer,
+  newDisplayTimer,
+}, dispatch)
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Nav)

@@ -7,20 +7,22 @@ const Button = ({
   children,
   color = 'primary',
   onClick,
-  text,
   type = 'button',
+  ...props
 }) => (
   <button 
     className={`btn ${color}`} 
     onClick={onClick}
     type={type}
+    {...props}
   >
-    {text ? text : children}
+    {children}
   </button>
 )
 
 Button.propTypes = {
-  children: PropTypes.string,
+  'aria-label': PropTypes.string,
+  children: PropTypes.node.isRequired,
   color: PropTypes.string,
   onClick: PropTypes.func,
   text: PropTypes.string,

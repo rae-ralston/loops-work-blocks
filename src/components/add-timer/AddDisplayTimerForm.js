@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import TextField from 'material-ui/TextField'
-import Button from 'material-ui/Button'
+import Button from '../common/Button'
 
 export default class AddDisplayTimerForm extends Component{
   state = { title: "" }
@@ -26,7 +26,7 @@ export default class AddDisplayTimerForm extends Component{
           onChange={ (e) => this.handleChange(e) }
         />
         <br />
-        <Button raised color="primary" type="submit">Submit</Button>
+        <Button color="primary" type="submit">Submit</Button>
       </form>
     )
   }
