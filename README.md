@@ -1,5 +1,6 @@
 # Looping Timer ⏳
 
+This project needs a better name... can you think of something catchy?
 This is a flexible and customizable timer that will help you sink into a great work day. With this tool you can create and track customized time blocks. Great for tracking [pomodoros](https://en.wikipedia.org/wiki/Pomodoro_Technique)!
 
 ## Getting Started
