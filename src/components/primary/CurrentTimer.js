@@ -8,7 +8,7 @@ import AddIcon from 'material-ui-icons/Add'
 import EditIcon from 'material-ui-icons/Edit'
 
 import AddTimer from '../add-timer/AddTimer'
-import SubTimer from './SubTimer'
+import SubTimer from './sub-timer/SubTimer'
 
 export default class CurrentTimer extends Component {
   state = {
@@ -33,7 +33,7 @@ export default class CurrentTimer extends Component {
   toggleEditingDisplayTitle = () => 
     this.setState({ editingDisplayTitle: !this.state.editingDisplayTitle})
 
-  handleChange = (event) => this.setState({ displayTitle: event.target.value })
+  handleChange = event => this.setState({ displayTitle: event.target.value })
 
   handleAddSubTimer = (title, totalTime) => {
     const { newSubTimer, displayTimer } = this.props
@@ -41,7 +41,7 @@ export default class CurrentTimer extends Component {
     this.toggleAddSubTimer()
   }
 
-  handleKeyPress = (event) => {
+  handleKeyPress = event => {
     if (event.key === "Enter") {
       const { updateDisplayTimerTitle, displayTimer} = this.props
       this.toggleEditingDisplayTitle()
@@ -49,26 +49,30 @@ export default class CurrentTimer extends Component {
     }
   }
 
-  checkIfLastSubTimer = (timer) => {
+  checkIfLastSubTimer = timer => {
     const { displayTimer, incrementLoopsMade } = this.props
     if (displayTimer.subTimers.length === timer.index) {
       incrementLoopsMade(displayTimer.id)
     }
   }
 
-  createSubTimers = (displayTimer) => displayTimer.subTimers
-    .map(timer => (
-      <SubTimer
-        displayTimerId={ displayTimer.id }
-        timer={ timer }
-        key={ 'st-' + displayTimer.id + timer.id }
-        rotateSubTimer={ this.props.rotateSubTimer }
-        isTicking={ this.state.isTicking }
-        toggleTicking={ this.toggleTicking }
-        checkIfLastSubTimer={ this.checkIfLastSubTimer }
-      />
+  createSubTimers = displayTimer => {
+    const { moveSubTimerOne, rotateSubTimer } = this.props
+    return displayTimer.subTimers
+      .map(timer => (
+        <SubTimer
+          displayTimerId={displayTimer.id}
+          timer={timer}
+          key={'st-' + displayTimer.id + timer.id}
+          rotateSubTimer={rotateSubTimer}
+          isTicking={this.state.isTicking}
+          toggleTicking={this.toggleTicking}
+          checkIfLastSubTimer={this.checkIfLastSubTimer}
+          moveSubTimerOne={moveSubTimerOne}
+        />
+      )
     )
-  )
+  }
 
   render() {
     const { displayTimer } = this.props
@@ -121,4 +125,5 @@ CurrentTimer.propTypes = {
   newSubTimer: PropTypes.func,
   rotateSubTimer: PropTypes.func,
   updateisplayTimerTitle: PropTypes.func,
+  moveSubTimerOne: PropTypes.func,
 }

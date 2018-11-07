@@ -5,13 +5,14 @@ import Card from 'material-ui/Card'
 import Divider from 'material-ui/Divider'
 import Typography from 'material-ui/Typography'
 
-import { TimerControls } from './TimerControls'
-import { convertSecToHMS, padTimeForDisplay } from '../../lib/timeHelpers'
+import TimerControls from './TimerControls'
+import { convertSecToHMS, padTimeForDisplay } from '../../../lib/timeHelpers'
+import { OrderControls } from './OrderControls';
 
-export default class SubTimer extends Component {
+class SubTimer extends Component {
   state = {
-    timeLeft: this.props.timer.totalSeconds,
     interval: null,
+    timeLeft: this.props.timer.totalSeconds,
   }
 
   componentDidMount() {
@@ -32,11 +33,16 @@ export default class SubTimer extends Component {
     }
   }
 
-  nextSubTimer = (direction) => {
+  nextSubTimer = direction => {
     const { rotateSubTimer, timer } = this.props
     this.setState({ timeLeft: this.props.timer.totalSeconds })
     this.props.checkIfLastSubTimer(timer)
     rotateSubTimer(this.props.displayTimerId, this.props.timer.id, direction)
+  }
+
+  moveSubTimerOne = direction => {
+    const { id, index } = this.props.timer
+    this.props.moveSubTimerOne({ id, index, direction })
   }
 
   render() {
@@ -49,22 +55,20 @@ export default class SubTimer extends Component {
     return (
       <Card>
         <div>
-          <Typography type='title' align='center'>{ timer.title }</Typography>
+          <Typography type='title' align='center'>{timer.title}</Typography>
           <Typography type='subheading' align='center'>
-            { padTimeForDisplay(timer.hours) }
-            :{ padTimeForDisplay(timer.min) }
-            :{ padTimeForDisplay(timer.sec) }
+            {padTimeForDisplay(timer.hours)}:{padTimeForDisplay(timer.min)}:{padTimeForDisplay(timer.sec)}
           </Typography>
         </div>
         {
-          timer.isCurrent ?
+          timer.isCurrent &&
             <TimerControls
-              toggleTicking={ toggleTicking }
-              nextSubTimer={ this.nextSubTimer }
-              isTicking={ this.state.isTicking }
-            /> :
-            <div></div>
+              toggleTicking={toggleTicking}
+              nextSubTimer={this.nextSubTimer}
+              isTicking={this.state.isTicking}
+            />
         }
+        <OrderControls moveSubTimerOne={this.moveSubTimerOne} />
         <Divider/>
       </Card>
     )
@@ -87,4 +91,7 @@ SubTimer.propTypes = {
     totalSeconds: PropTypes.number,
     title: PropTypes.string,
   }),
+  moveSubTimerOne: PropTypes.func
 }
+
+export default SubTimer

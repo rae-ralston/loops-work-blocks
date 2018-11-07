@@ -5,6 +5,7 @@ import {
   NEW_SUB_TIMER,
   INCREMENT_LOOPS_MADE,
   UPDATE_DISPLAY_TIMER_TITLE,
+  MOVE_SUB_TIMER_ONE,
 } from '../constants'
 import { _toggleDisplayTimerOn, _reduceRotateSubTimer } from './helpers'
 
@@ -68,6 +69,11 @@ export default function timers(state=data, action) {
         }
         return displayTimer
       })
+
+    case MOVE_SUB_TIMER_ONE: 
+      console.log('moving a timer', action.direction) 
+      console.log(state)
+      return state
 
     default:
       return state
