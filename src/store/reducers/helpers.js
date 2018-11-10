@@ -12,31 +12,35 @@ export function _reduceRotateSubTimer(displayTimerArray, action) {
     , atEnd = false
 
   displayTimerArray.subTimers = displayTimerArray.subTimers
-    .map((subTimer, i, array) => {
+    .map(subTimer => {
       let { index, id } = subTimer
       if (id === action.subTimerId) {
         nextIndex = direction === 'prev' ? index - 1 : index + 1
-        return _updateIsCurrent(subTimer, false)
+        return _updateIsCurrentStatus(subTimer, false)
       }
 
       if (index === nextIndex && direction === 'next') {
-        return _updateIsCurrent(subTimer, true)
+        return _updateIsCurrentStatus(subTimer, true)
       }
 
       return subTimer
     })
+
   let { subTimers } = displayTimerArray
+
   if (direction === 'next') {
     if (nextIndex > subTimers.length) {
-      temp = _updateIsCurrent(subTimers[0], true)
+      temp = _updateIsCurrentStatus(subTimers[0], true)
       atEnd = true
     }
 
     displayTimerArray.subTimers[0] = atEnd ? temp : { ...subTimers[0], isCurrent: false }
   }
+
   if (direction === 'prev') {
     displayTimerArray.subTimers = _turnOverPrevious(subTimers, nextIndex, direction)
   }
+
   atEnd = false
   return displayTimerArray
 }
@@ -44,12 +48,9 @@ export function _reduceRotateSubTimer(displayTimerArray, action) {
 export function _turnOverPrevious(subTimers, index) {
   if (index <= 0) index = subTimers.length
 
-  return subTimers.map(timer => {
-    if (timer.index === index) return _updateIsCurrent(timer, true)
-    return timer
-  })
+  return subTimers.map(timer => timer.index === index ? _updateIsCurrentStatus(timer, true) : timer)
 }
 
-export function _updateIsCurrent(timer, status) {
+export function _updateIsCurrentStatus(timer, status) {
   return {...timer, isCurrent: status}
 }

@@ -41,8 +41,8 @@ class SubTimer extends Component {
   }
 
   moveSubTimerOne = direction => {
-    const { id, index } = this.props.timer
-    this.props.moveSubTimerOne({ id, index, direction })
+    const { displayTimerId, timer: { id, index } } = this.props
+    this.props.moveSubTimerOne({ id, index, direction, displayTimerId })
   }
 
   render() {
