@@ -1,26 +1,28 @@
 let subTimerIdCount = 1
 , displayTimerIdCount = 3
+, subTimerOrder = 1
 
 const _incrementTimerId = type => type === 'display' ? displayTimerIdCount ++ : subTimerIdCount ++
 
 export function createSubTimer(totalSeconds, isCurrent, title, index) {
   return {
     id: _incrementTimerId('sub'),
-    totalSeconds,
-    title,
-    isCurrent,
     index,
+    isCurrent,
+    order: subTimerOrder ++,
+    title,
+    totalSeconds,
   }
 }
 
 export function createDisplayTimer(title) {
   return {
     id: _incrementTimerId('display'),
-    title,
     isDisplayed: false,
     loopsMade: 0,
     subTimerCount: 0,
     subTimers: [],
+    title,
   }
 }
 

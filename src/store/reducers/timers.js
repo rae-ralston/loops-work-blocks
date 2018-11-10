@@ -5,11 +5,13 @@ import {
   NEW_SUB_TIMER,
   INCREMENT_LOOPS_MADE,
   UPDATE_DISPLAY_TIMER_TITLE,
+  MOVE_SUB_TIMER_ONE,
 } from '../constants'
 import { _toggleDisplayTimerOn, _reduceRotateSubTimer } from './helpers'
 
 import data from '../../lib/data'
 import { createDisplayTimer, createSubTimer } from '../../lib/helpers'
+// import { moveSubTimerOne } from '../actions/moveSubTimer';
 
 export default function timers(state=data, action) {
   switch (action.type) {
@@ -23,10 +25,8 @@ export default function timers(state=data, action) {
 
     case ROTATE_SUB_TIMER:
       return state.map(displayTimer => {
-        if (displayTimer.id === action.displayTimerId) {
-          return _reduceRotateSubTimer(displayTimer, action)
-        }
-        return displayTimer
+        return displayTimer.id === action.displayTimerId ?
+          _reduceRotateSubTimer(displayTimer, action) : displayTimer
       })
 
     case NEW_DISPLAY_TIMER:
@@ -49,27 +49,33 @@ export default function timers(state=data, action) {
 
     case INCREMENT_LOOPS_MADE:
       return state.map( displayTimer => {
-        if (displayTimer.id === action.displayTimerId) {
-          return {
-            ...displayTimer,
-            loopsMade: displayTimer.loopsMade + 1
-          }
-        }
-        return displayTimer
+        return displayTimer.id === action.displayTimerId ? 
+          { ...displayTimer, loopsMade: displayTimer.loopsMade + 1 } : displayTimer
       })
 
     case UPDATE_DISPLAY_TIMER_TITLE:
       return state.map( displayTimer => {
-        if (displayTimer.id === action.displayTimerId) {
-          return {
-            ...displayTimer,
-            title: action.title
-          }
-        }
-        return displayTimer
+        return displayTimer.id === action.displayTimerId ? 
+          { ...displayTimer, title: action.title } : displayTimer
+      })
+
+    case MOVE_SUB_TIMER_ONE: 
+      return state.map( displayTimer => {
+        return displayTimer.id === action.displayTimerId ? 
+          moveSubTimerOne(displayTimer, action) : displayTimer
       })
 
     default:
       return state
   }
+}
+
+const moveSubTimerOne = (displayTimer, action) => {
+  let tempSubTimers = displayTimer.subTimers
+
+  console.log(tempSubTimers, action)
+  // TODO write algo to rotate scoot timers up and down
+  // TODO2 add looping to the timers, so the top goes to btm and the btm goes to top.
+  displayTimer.subTimers = tempSubTimers
+  return displayTimer
 }

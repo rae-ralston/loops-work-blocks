@@ -9,7 +9,7 @@ import ChevronLeftIcon from 'material-ui-icons/ChevronLeft'
 import ExpandLess from 'material-ui-icons/ExpandLess'
 import ExpandMore from 'material-ui-icons/ExpandMore'
 
-import AddTimer from '../add-timer/AddTimer type="display"'
+import AddTimer from '../add-timer/AddTimer'
 
 class Nav extends Component {
   state = {
