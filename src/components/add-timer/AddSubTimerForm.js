@@ -29,39 +29,35 @@ export default class AddSubTimerForm extends Component {
   }
 
   render() {
-    const { hours, minutes, seconds } = this.state
+    const { hours, minutes, seconds, title } = this.state
 
     return (
       <Card>
         <form
           className="addSubTimerForm"
-          onSubmit={ event => this.handleSubmit(event) }
-        >
+          onSubmit={event => this.handleSubmit(event) }>
           <TextField
             required
             id='subTimer-title'
             label='title'
-            value={ this.state.title }
-            onChange={ this.handleChange('title') }
-          /><br/>
+            value={title}
+            onChange={() => this.handleChange('title')} />
+          <br/>
           <TimePicker
             type="hours"
-            data={ hrs }
-            current={ hours }
-            handleChange={ this.handleChange }
-          />
+            data={hrs}
+            current={hours}
+            handleChange={this.handleChange} />
           <TimePicker
             type="minutes"
-            data={ min }
-            current={ minutes }
-            handleChange={ this.handleChange }
-          />
+            data={min}
+            current={minutes}
+            handleChange={this.handleChange} />
           <TimePicker
             type="seconds"
-            data={ sec }
-            current={ seconds }
-            handleChange={ this.handleChange }
-          />
+            data={sec}
+            current={seconds}
+            handleChange={this.handleChange} />
           <br/>
           <Button color="primary" type="submit">Submit</Button>
         </form>

@@ -7,7 +7,7 @@ import Button from '../common/Button'
 export default class AddDisplayTimerForm extends Component{
   state = { title: "" }
 
-  handleChange = (event) => this.setState({ title: event.target.value })
+  handleChange = event => this.setState({ title: event.target.value })
 
   render() {
     const { handleSubmit } = this.props
@@ -16,15 +16,13 @@ export default class AddDisplayTimerForm extends Component{
     return (
       <form
         className="newDisplayTimerForm"
-        onSubmit={ (e) => handleSubmit(e, title) }
-      >
+        onSubmit={e => handleSubmit(e, title)}>
         <TextField
           required
           id='displayTimer-title'
           placeholder="title"
-          value={ title }
-          onChange={ (e) => this.handleChange(e) }
-        />
+          value={title}
+          onChange={e => this.handleChange(e)} />
         <br />
         <Button color="primary" type="submit">Submit</Button>
       </form>

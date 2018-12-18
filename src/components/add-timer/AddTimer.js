@@ -5,7 +5,9 @@ import AddSubTimerForm from './AddSubTimerForm'
 import AddDisplayTimerForm from './AddDisplayTimerForm'
 
 const AddTimer = ({ type, ...props }) => (
-  type === 'sub' ? <AddSubTimerForm {...props} /> : <AddDisplayTimerForm {...props} />
+  type === 'sub' ?
+    <AddSubTimerForm {...props} /> :
+    <AddDisplayTimerForm {...props} />
 )
 
 AddTimer.propTypes = {

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './Button.css'
+import './Button.css'
 
 const Button = ({
   children,
@@ -10,12 +10,11 @@ const Button = ({
   type = 'button',
   ...props
 }) => (
-  <button 
-    className={`btn ${color}`} 
+  <button
+    className={`btn ${color}`}
     onClick={onClick}
     type={type}
-    {...props}
-  >
+    {...props}>
     {children}
   </button>
 )
@@ -28,5 +27,7 @@ Button.propTypes = {
   text: PropTypes.string,
   type: PropTypes.string,
 }
+
+//TODO add default props instead of default in argument declaration.
 
 export default Button

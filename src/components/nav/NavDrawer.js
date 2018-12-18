@@ -10,12 +10,13 @@ class NavDrawer extends Component {
   toggleDrawer = () => this.setState({ open: !this.state.open })
 
   render() {
+    const { toggleDrawer } = this
     return (
       <div>
-        <Menu onClick={ this.toggleDrawer } />
+        <Menu onClick={toggleDrawer} />
         <NavContainer
-          isDrawerOpen={ this.state.open }
-          toggleDrawer= { this.toggleDrawer }
+          isDrawerOpen={this.state.open}
+          toggleDrawer= {toggleDrawer}
         />
       </div>
     )

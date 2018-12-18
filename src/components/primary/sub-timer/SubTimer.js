@@ -34,10 +34,10 @@ class SubTimer extends Component {
   }
 
   nextSubTimer = direction => {
-    const { rotateSubTimer, timer } = this.props
-    this.setState({ timeLeft: this.props.timer.totalSeconds })
-    this.props.checkIfLastSubTimer(timer)
-    rotateSubTimer(this.props.displayTimerId, this.props.timer.id, direction)
+    const { rotateSubTimer, timer, displayTimerId, checkIfLastSubTimer } = this.props
+    this.setState({ timeLeft: timer.totalSeconds })
+    checkIfLastSubTimer(timer)
+    rotateSubTimer(displayTimerId, timer.id, direction)
   }
 
   moveSubTimerOne = direction => {
@@ -57,6 +57,7 @@ class SubTimer extends Component {
         <div>
           <Typography type='title' align='center'>{timer.title}</Typography>
           <Typography type='subheading' align='center'>
+<<<<<<< HEAD:src/components/primary/sub-timer/SubTimer.js
             {padTimeForDisplay(timer.hours)}:{padTimeForDisplay(timer.min)}:{padTimeForDisplay(timer.sec)}
           </Typography>
         </div>
@@ -67,6 +68,19 @@ class SubTimer extends Component {
               nextSubTimer={this.nextSubTimer}
               isTicking={this.state.isTicking}
             />
+=======
+            {padTimeForDisplay(timer.hours)}
+            :{padTimeForDisplay(timer.min)}
+            :{padTimeForDisplay(timer.sec)}
+          </Typography>
+        </div>
+        {timer.isCurrent ?
+          <TimerControls
+            toggleTicking={toggleTicking}
+            nextSubTimer={this.nextSubTimer}
+            isTicking={this.state.isTicking} /> :
+          <div></div>
+>>>>>>> Updating formatting:src/components/primary/SubTimer.js
         }
         <OrderControls moveSubTimerOne={this.moveSubTimerOne} />
         <Divider/>

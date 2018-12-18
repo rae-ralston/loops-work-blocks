@@ -30,7 +30,7 @@ export default class CurrentTimer extends Component {
 
   toggleAddSubTimer = () => this.setState({ addSubTimer: !this.state.addSubTimer})
 
-  toggleEditingDisplayTitle = () => 
+  toggleEditingDisplayTitle = () =>
     this.setState({ editingDisplayTitle: !this.state.editingDisplayTitle})
 
   handleChange = event => this.setState({ displayTitle: event.target.value })
@@ -76,37 +76,32 @@ export default class CurrentTimer extends Component {
 
   render() {
     const { displayTimer } = this.props
+    const { toggleAddSubTimer, toggleEditingDisplayTitle } = this
+    const { editingDisplayTitle, displayTitle } this.state
 
     return (
       <div>
         <Typography type='display3' align='center' gutterBottom>
-          {
-            this.state.editingDisplayTitle ?
+          {editingDisplayTitle ?
             <TextField
               required
               id='display-edit-title'
-              value={ this.state.displayTitle }
-              onChange={ (e) => this.handleChange(e) }
-              onKeyPress={ (e) => this.handleKeyPress(e) }
-            /> :
-            this.state.displayTitle
+              value={displayTitle}
+              onChange={e => this.handleChange(e)}
+              onKeyPress={e => this.handleKeyPress(e)} /> :
+            displayTitle
           }
-          <EditIcon onClick={ () => this.toggleEditingDisplayTitle() } />
+          <EditIcon onClick={toggleEditingDisplayTitle} />
         </Typography>
         <Typography type='caption' align='center' gutterBottom>
-          { displayTimer.loopsMade + " loops made." }
+          {`${displayTimer.loopsMade} loops made.`}
         </Typography>
-        { this.createSubTimers(displayTimer) }
-        {
-          this.state.addSubTimer ?
-            <AddTimer type="sub" handleAddSubTimer={ this.handleAddSubTimer } /> :
-            <Button
-              color="primary"
-              aria-label="add"
-              onClick={ () => this.toggleAddSubTimer() }
-            >
-              <AddIcon />
-            </Button>
+        {this.createSubTimers(displayTimer)}
+        {this.state.addSubTimer ?
+          <AddTimer type="sub" handleAddSubTimer={ this.handleAddSubTimer } /> :
+          <Button color="primary" aria-label="add" onClick={toggleAddSubTimer}>
+            <AddIcon />
+          </Button>
         }
       </div>
     )

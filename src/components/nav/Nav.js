@@ -20,10 +20,9 @@ class Nav extends Component {
 
   timerList = timers => timers.map(timer => (
     <ListItem button
-      key={ timer.id }
-      onClick={ () => this.props.displaySingleTimer(timer.id) }
-    >
-      <ListItemText primary={ timer.title } />
+      key={timer.id}
+      onClick={() => this.props.displaySingleTimer(timer.id)}>
+      <ListItemText primary={timer.title} />
     </ListItem>
   ))
 
@@ -34,48 +33,45 @@ class Nav extends Component {
     this.setState({ isTimerDropDownOpen: !this.state.isTimerDropDownOpen })
 
   handleSubmit = (event, title) => {
-    const { newDisplayTimer, toggleDrawer } = this.props
     event.preventDefault()
-    newDisplayTimer(title)
-    toggleDrawer()
+    this.props.newDisplayTimer(title)
+    this.props.toggleDrawer()
     this.toggleNewTimerModal()
   }
 
   render() {
-    const { isTimerDropDownOpen } = this.state
+    const { isTimerDropDownOpen, addDisplayTimer } = this.state
     const { isDrawerOpen, timerList, toggleDrawer } = this.props
 
     return (
       <Drawer
         type='persistent'
         anchor='left'
-        open={ isDrawerOpen }
-      >
+        open={isDrawerOpen}>
         <div>
-          <IconButton onClick={ toggleDrawer }>
+          <IconButton onClick={toggleDrawer}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
         <List>
-          <ListItem button onClick={ this.toggleTimerDropDown }>
+          <ListItem button onClick={this.toggleTimerDropDown}>
             <ListItemText primary="Timers" />
-            { isTimerDropDownOpen ? <ExpandLess /> : <ExpandMore /> }
+            {isTimerDropDownOpen ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse
             component="li"
-            in={ isTimerDropDownOpen }
+            in={isTimerDropDownOpen}
             timeout="auto"
-            unmountOnExit
-          >
+            unmountOnExit>
             <List disablePadding>
               {
-                this.state.addDisplayTimer ?
+                addDisplayTimer ?
                   <AddTimer type="display" handleSubmit={ this.handleSubmit } />:
-                  <ListItem button onClick={ () => this.toggleNewTimerModal() }>
+                  <ListItem button onClick={this.toggleNewTimerModal}>
                     <ListItemText primary="new Timer" />
                   </ListItem>
               }
-              { this.timerList(timerList) }
+              {this.timerList(timerList)}
             </List>
           </Collapse>
         </List>
