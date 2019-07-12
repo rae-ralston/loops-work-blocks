@@ -57,18 +57,6 @@ class SubTimer extends Component {
         <div>
           <Typography type='title' align='center'>{timer.title}</Typography>
           <Typography type='subheading' align='center'>
-<<<<<<< HEAD:src/components/primary/sub-timer/SubTimer.js
-            {padTimeForDisplay(timer.hours)}:{padTimeForDisplay(timer.min)}:{padTimeForDisplay(timer.sec)}
-          </Typography>
-        </div>
-        {
-          timer.isCurrent &&
-            <TimerControls
-              toggleTicking={toggleTicking}
-              nextSubTimer={this.nextSubTimer}
-              isTicking={this.state.isTicking}
-            />
-=======
             {padTimeForDisplay(timer.hours)}
             :{padTimeForDisplay(timer.min)}
             :{padTimeForDisplay(timer.sec)}
@@ -80,7 +68,6 @@ class SubTimer extends Component {
             nextSubTimer={this.nextSubTimer}
             isTicking={this.state.isTicking} /> :
           <div></div>
->>>>>>> Updating formatting:src/components/primary/SubTimer.js
         }
         <OrderControls moveSubTimerOne={this.moveSubTimerOne} />
         <Divider/>

@@ -77,7 +77,7 @@ export default class CurrentTimer extends Component {
   render() {
     const { displayTimer } = this.props
     const { toggleAddSubTimer, toggleEditingDisplayTitle } = this
-    const { editingDisplayTitle, displayTitle } this.state
+    const { editingDisplayTitle, displayTitle } = this.state
 
     return (
       <div>
