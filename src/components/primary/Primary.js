@@ -3,30 +3,25 @@ import PropTypes from 'prop-types'
 
 import CurrentTimer from './CurrentTimer'
 
-class Primary extends Component {
-  render() {
-    const {
-      incrementLoopsMade,
-      newSubTimer,
-      rotateSubTimer,
-      timerList,
-      updateDisplayTimerTitle,
-      moveSubTimerOne,
-    } = this.props
-    const currentTimer = timerList.filter(timer => timer.isDisplayed)
-
-    return (
-      <CurrentTimer
-        displayTimer={currentTimer[0]}
-        rotateSubTimer={rotateSubTimer}
-        newSubTimer={newSubTimer}
-        incrementLoopsMade={incrementLoopsMade}
-        updateDisplayTimerTitle={updateDisplayTimerTitle}
-        moveSubTimerOne={moveSubTimerOne}
-      />
-    )
-  }
-}
+const Primary = ({
+    incrementLoopsMade,
+    moveSubTimerOne,
+    newSubTimer,
+    rotateSubTimer,
+    timerList,
+    updateDisplayTimerTitle,
+  }) => (
+  <CurrentTimer
+    displayTimer={
+      timerList.filter(timer => timer.isDisplayed)[0]
+    }
+    rotateSubTimer={rotateSubTimer}
+    newSubTimer={newSubTimer}
+    incrementLoopsMade={incrementLoopsMade}
+    updateDisplayTimerTitle={updateDisplayTimerTitle}
+    moveSubTimerOne={moveSubTimerOne}
+  />
+)
 
 Primary.propTypes = {
   timerList: PropTypes.arrayOf(PropTypes.object),
