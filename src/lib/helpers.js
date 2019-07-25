@@ -1,6 +1,6 @@
 let subTimerIdCount = 1
-, displayTimerIdCount = 3
-, subTimerOrder = 1
+let displayTimerIdCount = 3
+let subTimerOrder = 1
 
 const _incrementTimerId = type => type === 'display' ? displayTimerIdCount ++ : subTimerIdCount ++
 
