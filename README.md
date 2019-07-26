@@ -15,13 +15,15 @@ Fork and clone this repository to your local machine.
 
 A step by step series of examples that tell you have to get a development env running
 
-Install dependencies  
-```
+#### Install dependencies
+
+```bash
 npm install
 ```
 
-Start the local server  
-```
+#### Start the local server
+
+```bash
 npm start
 ```
 
@@ -29,10 +31,28 @@ npm start
 
 ## Running the tests
 
-To run the tests:atom
-```
+```bash
 npm test
 ```
+
+## Data Structure (WIP)
+
+users
+    id
+    name
+    theme_id
+timers
+    id
+    user_id
+    totalLoops
+subTimers
+    id
+    timer_id
+    totalTime
+    currentTime
+    order
+themes
+    id
 <!-- Explain how to run the automated tests for this system
 
 ### Break down into end to end tests
@@ -61,12 +81,13 @@ Add additional notes about how to deploy this on a live system -->
 * [Material UI @next](https://material-ui-next.com/)
 
 ### Stack
-- react
-- redux
+
+* react
+* redux
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](#) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
