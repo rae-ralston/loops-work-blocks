@@ -6,8 +6,9 @@ import Divider from 'material-ui/Divider'
 import Typography from 'material-ui/Typography'
 
 import TimerControls from './TimerControls'
-import { convertSecToHMS, padTimeForDisplay } from '../../lib/timeHelpers'
+import { convertSecToHMS, createTime } from '../../lib/timeHelpers'
 import { OrderControls } from './OrderControls';
+import { createSubTimer } from '../../lib/helpers'
 
 class SubTimer extends Component {
   state = {
@@ -57,9 +58,7 @@ class SubTimer extends Component {
         <div>
           <Typography type='title' align='center'>{timer.title}</Typography>
           <Typography type='subheading' align='center'>
-            {padTimeForDisplay(timer.hours)}
-            :{padTimeForDisplay(timer.min)}
-            :{padTimeForDisplay(timer.sec)}
+            {createTime(timer)}
           </Typography>
         </div>
         {timer.isCurrent ?

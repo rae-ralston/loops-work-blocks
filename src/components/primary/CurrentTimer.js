@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import Button from 'material-ui/Button'
@@ -9,55 +9,52 @@ import EditIcon from 'material-ui-icons/Edit'
 
 import AddTimer from '../add-timer/AddTimer'
 import SubTimer from '../sub-timer/SubTimer'
+import { useTimerControls } from '../../hooks/use-timer-controls'
 
-export default class CurrentTimer extends Component {
-  state = {
-    isTicking: false,
-    addSubTimer: false,
-    editingDisplayTitle: false,
-    displayTitle: "",
-  }
+export const CurrentTimer = ({ 
+  newSubTimer, 
+  displayTimer, 
+  updateDisplayTimerTitle, 
+  incrementLoopsMade,
+  moveSubTimerOne,
+  rotateSubTimer,
+}) => {
+  const [timerControls, setTimerControls] = useTimerControls()
+  const { isTicking, addSubTimer, displayTitle, editingDisplayTitle } = timerControls
 
-  componentDidMount() {
-    this.setState({ displayTitle: this.props.displayTimer.title})
-  }
+  const toggleTicking = () => setTimerControls({ 
+    isTicking: !isTicking 
+  })
 
-  static getDerivedStateFromProps(newProps) {
-    this.setState({ displayTitle: newProps.displayTimer.title})
-  }
+  const toggleAddSubTimer = () => setTimerControls({ 
+    addSubTimer: !addSubTimer 
+  })
 
-  toggleTicking = () => this.setState({ isTicking: !this.state.isTicking })
+  const toggleEditingDisplayTitle = () => setTimerControls({ 
+    editingDisplayTitle: !editingDisplayTitle
+  })
 
-  toggleAddSubTimer = () => this.setState({ addSubTimer: !this.state.addSubTimer})
+  const handleChange = e => setTimerControls({ displayTitle: e.target.value })
 
-  toggleEditingDisplayTitle = () =>
-    this.setState({ editingDisplayTitle: !this.state.editingDisplayTitle})
-
-  handleChange = event => this.setState({ displayTitle: event.target.value })
-
-  handleAddSubTimer = (title, totalTime) => {
-    const { newSubTimer, displayTimer } = this.props
+  const handleAddSubTimer = (title, totalTime) => {
     newSubTimer(displayTimer.id, title, totalTime)
-    this.toggleAddSubTimer()
+    toggleAddSubTimer()
   }
 
-  handleKeyPress = event => {
-    if (event.key === "Enter") {
-      const { updateDisplayTimerTitle, displayTimer} = this.props
-      this.toggleEditingDisplayTitle()
-      updateDisplayTimerTitle(displayTimer.id, this.state.displayTitle)
+  const handleKeyPress = e => {
+    if (e.key === "Enter") {
+      toggleEditingDisplayTitle()
+      updateDisplayTimerTitle(displayTimer.id, displayTitle)
     }
   }
 
-  checkIfLastSubTimer = timer => {
-    const { displayTimer, incrementLoopsMade } = this.props
+  const isLast = timer => {
     if (displayTimer.subTimers.length === timer.index) {
       incrementLoopsMade(displayTimer.id)
     }
   }
 
-  createSubTimers = displayTimer => {
-    const { moveSubTimerOne, rotateSubTimer } = this.props
+  const createSubTimers = displayTimer => {
     return displayTimer.subTimers
       .map(timer => (
         <SubTimer
@@ -65,47 +62,41 @@ export default class CurrentTimer extends Component {
           timer={timer}
           key={'st-' + displayTimer.id + timer.id}
           rotateSubTimer={rotateSubTimer}
-          isTicking={this.state.isTicking}
-          toggleTicking={this.toggleTicking}
-          checkIfLastSubTimer={this.checkIfLastSubTimer}
+          isTicking={isTicking}
+          toggleTicking={toggleTicking}
+          checkIfLastSubTimer={isLast}
           moveSubTimerOne={moveSubTimerOne}
         />
       )
     )
   }
 
-  render() {
-    const { displayTimer } = this.props
-    const { toggleAddSubTimer, toggleEditingDisplayTitle } = this
-    const { editingDisplayTitle, displayTitle } = this.state
-
-    return (
-      <div>
-        <Typography type='display3' align='center' gutterBottom>
-          {editingDisplayTitle ?
-            <TextField
-              required
-              id='display-edit-title'
-              value={displayTitle}
-              onChange={e => this.handleChange(e)}
-              onKeyPress={e => this.handleKeyPress(e)} /> :
-            displayTitle
-          }
-          <EditIcon onClick={toggleEditingDisplayTitle} />
-        </Typography>
-        <Typography type='caption' align='center' gutterBottom>
-          {`${displayTimer.loopsMade} loops made.`}
-        </Typography>
-        {this.createSubTimers(displayTimer)}
-        {this.state.addSubTimer ?
-          <AddTimer type="sub" handleAddSubTimer={ this.handleAddSubTimer } /> :
-          <Button color="primary" aria-label="add" onClick={toggleAddSubTimer}>
-            <AddIcon />
-          </Button>
+  return (
+    <div>
+      <Typography type='display3' align='center' gutterBottom>
+        {editingDisplayTitle ?
+          <TextField
+            required
+            id='display-edit-title'
+            value={displayTitle}
+            onChange={e => handleChange(e)}
+            onKeyPress={e => handleKeyPress(e)} /> :
+          displayTitle
         }
-      </div>
-    )
-  }
+        <EditIcon onClick={toggleEditingDisplayTitle} />
+      </Typography>
+      <Typography type='caption' align='center' gutterBottom>
+        {`${displayTimer.loopsMade} loops made.`}
+      </Typography>
+      {createSubTimers(displayTimer)}
+      {addSubTimer ?
+        <AddTimer type="sub" handleAddSubTimer={ handleAddSubTimer } /> :
+        <Button color="primary" aria-label="add" onClick={toggleAddSubTimer}>
+          <AddIcon />
+        </Button>
+      }
+    </div>
+  )
 }
 
 CurrentTimer.propTypes = {
