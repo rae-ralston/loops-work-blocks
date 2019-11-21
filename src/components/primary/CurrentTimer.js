@@ -8,7 +8,7 @@ import AddIcon from 'material-ui-icons/Add'
 import EditIcon from 'material-ui-icons/Edit'
 
 import AddTimer from '../add-timer/AddTimer'
-import SubTimer from './sub-timer/SubTimer'
+import SubTimer from '../sub-timer/SubTimer'
 
 export default class CurrentTimer extends Component {
   state = {

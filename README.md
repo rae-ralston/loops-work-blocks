@@ -40,16 +40,16 @@ npm test
 users
     id
     name
-    theme_id
+    themeid
 timers
     id
-    user_id
-    totalLoops
+    userid
+    totalloops
 subTimers
     id
-    timer_id
-    totalTime
-    currentTime
+    timerid
+    totaltime
+    currenttime
     order
 themes
     id
