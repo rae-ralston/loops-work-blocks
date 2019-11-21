@@ -38,21 +38,25 @@ npm test
 ## Data Structure (WIP)
 
 users
-    id
-    name
-    themeid
+  id
+  name
+  themeid
+
 timers
-    id
-    userid
-    totalloops
-subTimers
+  id
+  userid
+  totalloops
+  subtimers [{
     id
     timerid
     totaltime
     currenttime
     order
+  }]
+
 themes
     id
+
 <!-- Explain how to run the automated tests for this system
 
 ### Break down into end to end tests
