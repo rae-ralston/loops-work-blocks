@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-
 import Collapse from 'material-ui/transitions/Collapse'
 import Drawer from 'material-ui/Drawer'
 import IconButton from 'material-ui/IconButton'
@@ -8,76 +7,71 @@ import List, { ListItem, ListItemText } from 'material-ui/List'
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft'
 import ExpandLess from 'material-ui-icons/ExpandLess'
 import ExpandMore from 'material-ui-icons/ExpandMore'
-
 import AddTimer from '../add-timer/AddTimer'
 
-class Nav extends Component {
-  state = {
-    isTimerDropDownOpen: true,
-    addDisplayTimer: false,
-    newTimerTitle: "",
-  }
+export const Nav = ({ 
+  displaySingleTimer,
+  isDrawerOpen, 
+  newDisplayTimer,
+  timerList, 
+  toggleDrawer,
+}) => {
+  const [isTimerDropDownOpen, setIsTimerDropDownOpen] = useState(true)
+  const [addDisplayTimer, setAddDisplayTimer] = useState(false)
 
-  timerList = timers => timers.map(timer => (
+  const createTimerList = timers => timers.map(timer => (
     <ListItem button
       key={timer.id}
-      onClick={() => this.props.displaySingleTimer(timer.id)}>
+      onClick={() => displaySingleTimer(timer.id)}>
       <ListItemText primary={timer.title} />
     </ListItem>
   ))
 
-  toggleNewTimerModal = () =>
-    this.setState({ addDisplayTimer: !this.state.addDisplayTimer})
+  const toggleNewTimerModal = () => setAddDisplayTimer(!addDisplayTimer)
 
-  toggleTimerDropDown = () =>
-    this.setState({ isTimerDropDownOpen: !this.state.isTimerDropDownOpen })
+  const toggleTimerDropDown = () => setIsTimerDropDownOpen(!isTimerDropDownOpen)
 
-  handleSubmit = (event, title) => {
-    event.preventDefault()
-    this.props.newDisplayTimer(title)
-    this.props.toggleDrawer()
-    this.toggleNewTimerModal()
+  const handleSubmit = (e, title) => {
+    e.preventDefault()
+    newDisplayTimer(title)
+    toggleDrawer()
+    toggleNewTimerModal()
   }
 
-  render() {
-    const { isTimerDropDownOpen, addDisplayTimer } = this.state
-    const { isDrawerOpen, timerList, toggleDrawer } = this.props
-
-    return (
-      <Drawer
-        type='persistent'
-        anchor='left'
-        open={isDrawerOpen}>
-        <div>
-          <IconButton onClick={toggleDrawer}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <List>
-          <ListItem button onClick={this.toggleTimerDropDown}>
-            <ListItemText primary="Timers" />
-            {isTimerDropDownOpen ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse
-            component="li"
-            in={isTimerDropDownOpen}
-            timeout="auto"
-            unmountOnExit>
-            <List disablePadding>
-              {
-                addDisplayTimer ?
-                  <AddTimer type="display" handleSubmit={ this.handleSubmit } />:
-                  <ListItem button onClick={this.toggleNewTimerModal}>
-                    <ListItemText primary="new Timer" />
-                  </ListItem>
-              }
-              {this.timerList(timerList)}
-            </List>
-          </Collapse>
-        </List>
-      </Drawer>
-    )
-  }
+  return (
+    <Drawer
+      type='persistent'
+      anchor='left'
+      open={isDrawerOpen}>
+      <div>
+        <IconButton onClick={toggleDrawer}>
+          <ChevronLeftIcon />
+        </IconButton>
+      </div>
+      <List>
+        <ListItem button onClick={toggleTimerDropDown}>
+          <ListItemText primary="Timers" />
+          {isTimerDropDownOpen ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse
+          component="li"
+          in={isTimerDropDownOpen}
+          timeout="auto"
+          unmountOnExit>
+          <List disablePadding>
+            {
+              addDisplayTimer ?
+                <AddTimer type="display" handleSubmit={handleSubmit} />:
+                <ListItem button onClick={toggleNewTimerModal}>
+                  <ListItemText primary="new Timer" />
+                </ListItem>
+            }
+            {createTimerList(timerList)}
+          </List>
+        </Collapse>
+      </List>
+    </Drawer>
+  )
 }
 
 Nav.propTypes = {
@@ -91,7 +85,4 @@ Nav.propTypes = {
 Nav.defaultProps = {
   isTimerDropDownOpen: true,
   addDisplayTimer: false,
-  newTimerTitle: "",
 }
-
-export default Nav

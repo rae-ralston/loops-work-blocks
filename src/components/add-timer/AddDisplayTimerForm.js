@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField'
 import Button from '../common/Button'
 
 export const AddDisplayTimerForm = ({ handleSubmit }) => {
-  const [ title, setTitle ] = useState('')
+  const [title, setTitle] = useState('')
 
   return (
     <form
