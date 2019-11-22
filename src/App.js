@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'typeface-roboto'
 
-import NavDrawer from './components/nav/NavDrawer'
+import { NavDrawer } from './components/nav/NavDrawer'
 import PrimaryContainer from './components/primary/PrimaryContainer'
 
 class App extends Component {

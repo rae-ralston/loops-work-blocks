@@ -1,34 +1,18 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState } from 'react'
 import Menu from 'material-ui-icons/Menu'
-
 import NavContainer from './NavContainer'
 
-class NavDrawer extends Component {
-  state = { open: false }
+export const NavDrawer = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  const toggleDrawer = () => setIsOpen(!isOpen)
 
-  toggleDrawer = () => this.setState({ open: !this.state.open })
-
-  render() {
-    const { toggleDrawer } = this
-    return (
-      <div>
-        <Menu onClick={toggleDrawer} />
-        <NavContainer
-          isDrawerOpen={this.state.open}
-          toggleDrawer= {toggleDrawer}
-        />
-      </div>
-    )
-  }
+  return (
+    <div>
+      <Menu onClick={toggleDrawer} />
+      <NavContainer
+        isDrawerOpen={isOpen}
+        toggleDrawer= {toggleDrawer}
+      />
+    </div>
+  )
 }
-
-NavContainer.propTypes = {
-  isDrawerOpen: PropTypes.bool,
-}
-
-NavContainer.defaultProps = {
-  isDrawerOpen: false,
-}
-
-export default NavDrawer
