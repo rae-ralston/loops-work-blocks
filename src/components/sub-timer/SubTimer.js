@@ -1,82 +1,75 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-
 import Card from 'material-ui/Card'
 import Divider from 'material-ui/Divider'
 import Typography from 'material-ui/Typography'
-
 import TimerControls from './TimerControls'
 import { convertSecToHMS, createTime } from '../../lib/timeHelpers'
 import { OrderControls } from './OrderControls';
-import { createSubTimer } from '../../lib/helpers'
 
-class SubTimer extends Component {
-  state = {
-    interval: null,
-    timeLeft: this.props.timer.totalSeconds,
-  }
+const SubTimer = ({ 
+  displayTimerId, 
+  isLast,
+  isTicking, 
+  moveSubTimerOne,
+  rotateSubTimer,
+  timer, 
+  toggleTicking, 
+}) => {
+  const [timeLeft, setTimeLeft] = useState(timer.totalSeconds)
 
-  componentDidMount() {
-    const interval = setInterval(this.timer, 1000)
-    this.setState({ interval })
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.state.interval)
-  }
-
-  timer = () => {
-    if (this.props.timer.isCurrent && this.props.isTicking) {
-      this.setState({ timeLeft: this.state.timeLeft - 1 })
+  useEffect(() => {
+    if (timer.isCurrent && isTicking) {
+      setTimeout(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
     }
-    if (this.state.timeLeft < 0) {
-      this.nextSubTimer('next')
+    if (timeLeft < 0) {
+      nextSubTimer('next')
     }
-  }
+    
+  });
 
-  nextSubTimer = direction => {
-    const { rotateSubTimer, timer, displayTimerId, checkIfLastSubTimer } = this.props
-    this.setState({ timeLeft: timer.totalSeconds })
-    checkIfLastSubTimer(timer)
+  const nextSubTimer = direction => {
+    setTimeLeft(timer.totalSeconds)
+    isLast(timer)
     rotateSubTimer(displayTimerId, timer.id, direction)
   }
 
-  moveSubTimerOne = direction => {
-    const { displayTimerId, timer: { id, index } } = this.props
-    this.props.moveSubTimerOne({ id, index, direction, displayTimerId })
-  }
+  let HMS = convertSecToHMS(timeLeft)
+  timer.hours = HMS[0]
+  timer.min = HMS[1]
+  timer.sec = HMS[2]
 
-  render() {
-    const { timer, toggleTicking } = this.props
-    let HMS = convertSecToHMS(this.state.timeLeft)
-    timer.hours = HMS[0]
-    timer.min = HMS[1]
-    timer.sec = HMS[2]
-
-    return (
-      <Card>
-        <div>
-          <Typography type='title' align='center'>{timer.title}</Typography>
-          <Typography type='subheading' align='center'>
-            {createTime(timer)}
-          </Typography>
-        </div>
-        {timer.isCurrent ?
-          <TimerControls
-            toggleTicking={toggleTicking}
-            nextSubTimer={this.nextSubTimer}
-            isTicking={this.state.isTicking} /> :
-          <div></div>
-        }
-        <OrderControls moveSubTimerOne={this.moveSubTimerOne} />
-        <Divider/>
-      </Card>
-    )
-  }
+  return (
+    <Card>
+      <div>
+        <Typography type='title' align='center'>{timer.title}</Typography>
+        <Typography type='subheading' align='center'>
+          {createTime(timer)}
+        </Typography>
+      </div>
+      {timer.isCurrent ?
+        <TimerControls
+          toggleTicking={toggleTicking}
+          nextSubTimer={nextSubTimer}
+          isTicking={isTicking} /> :
+        <div></div>
+      }
+      <OrderControls moveSubTimerOne={direction => moveSubTimerOne({ 
+          id: timer.id, 
+          index: timer.index, 
+          direction, 
+          displayTimerId,
+        })} 
+      />
+      <Divider/>
+    </Card>
+  )
 }
 
 SubTimer.propTypes = {
-  checkIfLastSubTimer: PropTypes.func,
+  isLast: PropTypes.func,
   displayTimerId: PropTypes.number,
   isTicking: PropTypes.bool,
   rotateSubTimer: PropTypes.func,

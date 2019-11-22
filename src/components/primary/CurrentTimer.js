@@ -64,7 +64,7 @@ export const CurrentTimer = ({
           rotateSubTimer={rotateSubTimer}
           isTicking={isTicking}
           toggleTicking={toggleTicking}
-          checkIfLastSubTimer={isLast}
+          isLast={isLast}
           moveSubTimerOne={moveSubTimerOne}
         />
       )
