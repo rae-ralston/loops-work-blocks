@@ -33,7 +33,7 @@ const TimerControls = ({ toggleTicking, nextSubTimer, isTicking }) => (
 TimerControls.propTypes = {
   toggleTicking: PropTypes.func,
   nextSubTimer: PropTypes.func,
-  isTicking: PropTypes.number,
+  isTicking: PropTypes.bool,
 }
 
 export default TimerControls

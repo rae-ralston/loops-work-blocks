@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import AddSubTimerForm from './AddSubTimerForm'
+import { AddSubTimerForm } from './AddSubTimerForm'
 import { AddDisplayTimerForm } from './AddDisplayTimerForm'
 
 const AddTimer = ({ type, ...props }) => (
