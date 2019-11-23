@@ -7,7 +7,7 @@ import {
   UPDATE_DISPLAY_TIMER_TITLE,
   MOVE_SUB_TIMER_ONE,
 } from '../constants'
-import { _toggleDisplayTimerOn, _reduceRotateSubTimer } from './helpers'
+import { isTimerDisplayed, handleRotateSubTimer } from './helpers'
 
 import data from '../../lib/data'
 import { createDisplayTimer, createSubTimer } from '../../lib/helpers'
@@ -16,22 +16,20 @@ import { createDisplayTimer, createSubTimer } from '../../lib/helpers'
 export default function timers(state=data, action) {
   switch (action.type) {
     case DISPLAY_SINGLE_TIMER:
-      return state.map(displayTimer => {
-        return {
-          ...displayTimer,
-          isDisplayed: displayTimer.id === action.displayTimerId,
-        }
-      })
+      return state.map(displayTimer => ({
+        ...displayTimer,
+        isDisplayed: displayTimer.id === action.displayTimerId,
+      }))
 
     case ROTATE_SUB_TIMER:
-      return state.map(displayTimer => {
-        return displayTimer.id === action.displayTimerId ?
-          _reduceRotateSubTimer(displayTimer, action) : displayTimer
-      })
+      return state.map(displayTimer => displayTimer.id === action.displayTimerId 
+        ? handleRotateSubTimer(displayTimer, action) 
+        : displayTimer
+      )
 
     case NEW_DISPLAY_TIMER:
       let newSubTimer = createDisplayTimer(action.title)
-      return _toggleDisplayTimerOn([...state, newSubTimer], newSubTimer.id)
+      return isTimerDisplayed([...state, newSubTimer], newSubTimer.id)
 
     case NEW_SUB_TIMER:
       return state.map( displayTimer => {
@@ -48,10 +46,10 @@ export default function timers(state=data, action) {
       })
 
     case INCREMENT_LOOPS_MADE:
-      return state.map( displayTimer => {
-        return displayTimer.id === action.displayTimerId ? 
-          { ...displayTimer, loopsMade: displayTimer.loopsMade + 1 } : displayTimer
-      })
+      return state.map( displayTimer => displayTimer.id === action.displayTimerId 
+        ? { ...displayTimer, loopsMade: displayTimer.loopsMade + 1 } 
+        : displayTimer
+      )
 
     case UPDATE_DISPLAY_TIMER_TITLE:
       return state.map( displayTimer => {

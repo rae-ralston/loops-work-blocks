@@ -20,7 +20,12 @@ export const CurrentTimer = ({
   rotateSubTimer,
 }) => {
   const [timerControls, setTimerControls] = useTimerControls()
-  const { isTicking, addSubTimer, displayTitle, editingDisplayTitle } = timerControls
+  const { 
+    isTicking, 
+    addSubTimer, 
+    displayTitle, 
+    editingDisplayTitle 
+  } = timerControls
 
   const toggleTicking = () => setTimerControls({ 
     isTicking: !isTicking 
