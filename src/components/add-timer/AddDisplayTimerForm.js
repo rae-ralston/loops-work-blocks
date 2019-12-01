@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import TextField from 'material-ui/TextField'
 import Button from '../common/Button'
+import { useTitle } from '../../hooks/use-title'
 
 export const AddDisplayTimerForm = ({ handleSubmit }) => {
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useTitle()
 
   return (
     <form

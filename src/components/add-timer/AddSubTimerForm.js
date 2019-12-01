@@ -6,9 +6,10 @@ import Button from '../common/Button'
 import { hrs, min, sec } from '../../lib/helpers'
 import { totalHMSToSec } from '../../lib/timeHelpers'
 import { TimePicker } from './TimePicker'
+import { useTitle } from '../../hooks/use-title'
 
 export const AddSubTimerForm = ({ handleAddSubTimer }) => {
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useTitle()
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 })
   const { hours, minutes, seconds } = time
   

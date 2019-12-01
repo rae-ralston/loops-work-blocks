@@ -11,7 +11,6 @@ import { isTimerDisplayed, handleRotateSubTimer } from './helpers'
 
 import data from '../../lib/data'
 import { createDisplayTimer, createSubTimer } from '../../lib/helpers'
-// import { moveSubTimerOne } from '../actions/moveSubTimer';
 
 export default function timers(state=data, action) {
   switch (action.type) {
@@ -72,8 +71,6 @@ const moveSubTimerOne = (displayTimer, action) => {
   let tempSubTimers = displayTimer.subTimers
 
   console.log(tempSubTimers, action)
-  // TODO write algo to rotate scoot timers up and down
-  // TODO2 add looping to the timers, so the top goes to btm and the btm goes to top.
   displayTimer.subTimers = tempSubTimers
   return displayTimer
 }
