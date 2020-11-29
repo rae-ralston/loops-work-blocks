@@ -17,5 +17,7 @@ module.exports = {
     quotes: ["error", "double"],
     indent: ["error", 2],
     "no-multi-spaces": ["error"],
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-filename-extension": "off",
   },
 };

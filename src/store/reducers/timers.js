@@ -14,72 +14,65 @@ import { createDisplayTimer, createSubTimer } from "../../lib/helpers";
 
 export default function timers(state = data, action) {
   switch (action.type) {
-    case DISPLAY_SINGLE_TIMER:
-      return state.map((displayTimer) => ({
-        ...displayTimer,
-        isDisplayed: displayTimer.id === action.displayTimerId,
-      }));
+  case DISPLAY_SINGLE_TIMER:
+    return state.map((timer) => ({
+      ...timer,
+      isDisplayed: timer.id === action.displayTimerId,
+    }));
 
-    case ROTATE_SUB_TIMER:
-      return state.map((displayTimer) =>
-        displayTimer.id === action.displayTimerId
-          ? handleRotateSubTimer(displayTimer, action)
-          : displayTimer
-      );
+  case ROTATE_SUB_TIMER:
+    return state.map((timer) => (timer.id === action.displayTimerId
+      ? handleRotateSubTimer(timer, action)
+      : timer));
 
-    case NEW_DISPLAY_TIMER:
-      let newSubTimer = createDisplayTimer(action.title);
-      return isTimerDisplayed([...state, newSubTimer], newSubTimer.id);
+  case NEW_DISPLAY_TIMER: {
+    const newSubTimer = createDisplayTimer(action.title);
+    return isTimerDisplayed([...state, newSubTimer], newSubTimer.id);
+  }
 
-    case NEW_SUB_TIMER:
-      return state.map((displayTimer) => {
-        if (displayTimer.id === action.displayTimerId) {
-          let index = displayTimer.subTimers.length + 1;
-          let isCurrent = displayTimer.subTimers.length === 0;
-          let newDisplayTimer = createSubTimer(
-            action.totalTime,
-            isCurrent,
-            action.title,
-            index
-          );
-          return {
-            ...displayTimer,
-            subTimers: [...displayTimer.subTimers, newDisplayTimer],
-          };
-        }
-        return displayTimer;
-      });
+  case NEW_SUB_TIMER:
+    return state.map((timer) => {
+      if (timer.id === action.displayTimerId) {
+        const index = timer.subTimers.length + 1;
+        const isCurrent = timer.subTimers.length === 0;
+        const newDisplayTimer = createSubTimer(
+          action.totalTime,
+          isCurrent,
+          action.title,
+          index,
+        );
+        return {
+          ...timer,
+          subTimers: [...timer.subTimers, newDisplayTimer],
+        };
+      }
+      return timer;
+    });
 
-    case INCREMENT_LOOPS_MADE:
-      return state.map((displayTimer) =>
-        displayTimer.id === action.displayTimerId
-          ? { ...displayTimer, loopsMade: displayTimer.loopsMade + 1 }
-          : displayTimer
-      );
+  case INCREMENT_LOOPS_MADE:
+    return state.map((timer) => (timer.id === action.displayTimerId
+      ? { ...timer, loopsMade: timer.loopsMade + 1 }
+      : timer));
 
-    case UPDATE_DISPLAY_TIMER_TITLE:
-      return state.map((displayTimer) => {
-        return displayTimer.id === action.displayTimerId
-          ? { ...displayTimer, title: action.title }
-          : displayTimer;
-      });
+  case UPDATE_DISPLAY_TIMER_TITLE:
+    return state.map((timer) => (timer.id === action.displayTimerId
+      ? { ...timer, title: action.title }
+      : timer));
 
-    case MOVE_SUB_TIMER_ONE:
-      return state.map((displayTimer) => {
-        return displayTimer.id === action.displayTimerId
-          ? moveSubTimerOne(displayTimer, action)
-          : displayTimer;
-      });
+  case MOVE_SUB_TIMER_ONE:
+    return state.map((timer) => (timer.id === action.displayTimerId
+      ? () => { console.log("moving one"); return timer; }
+      : timer));
 
-    default:
-      return state;
+  default:
+    return state;
   }
 }
 
-const moveSubTimerOne = (displayTimer, action) => {
-  let tempSubTimers = displayTimer.subTimers;
+// const moveSubTimerOne = (displayTimer, action) => {
+//   const tempSubTimers = displayTimer.subTimers;
 
-  console.log(tempSubTimers, action);
-  displayTimer.subTimers = tempSubTimers;
-  return displayTimer;
-};
+//   console.log(tempSubTimers, action);
+//   displayTimer.subTimers = tempSubTimers;
+//   return displayTimer;
+// };

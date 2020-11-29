@@ -1,12 +1,11 @@
-import React from "react";
 import "typeface-roboto";
-
-import { NavDrawer } from "./components/nav/NavDrawer";
+import React from "react";
+import { Nav } from "./components";
 import PrimaryContainer from "./components/primary/PrimaryContainer";
 
 const App = () => (
   <div>
-    <NavDrawer />
+    <Nav />
     <PrimaryContainer />
   </div>
 );
