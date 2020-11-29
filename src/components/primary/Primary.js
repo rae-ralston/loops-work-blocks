@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { CurrentTimer } from "./CurrentTimer";
 
-const Primary = ({
+export const Primary = ({
   incrementLoopsMade,
   moveSubTimerOne,
   newSubTimer,

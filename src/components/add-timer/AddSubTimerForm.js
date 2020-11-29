@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Button from "../common/Button";
+import { Button } from "../common";
 import { hrs, min, sec } from "../../lib/helpers";
 import { totalHMSToSec } from "../../lib/timeHelpers";
 import { TimePicker } from "./TimePicker";

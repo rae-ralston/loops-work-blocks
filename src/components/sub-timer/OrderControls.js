@@ -1,18 +1,18 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { IconButton } from "../common/IconButton";
+import { IconButton, TimerBox } from "../common";
 
 export const OrderControls = ({ moveSubTimerOne }) => (
-  <div align="center">
+  <TimerBox>
     <IconButton
       onClick={() => moveSubTimerOne("up")}
       aria-label="Move Timer Up"
-    ></IconButton>
+    />
     <IconButton
       onClick={() => moveSubTimerOne("down")}
       aria-label="Move Timer Down"
-    ></IconButton>
-  </div>
+    />
+  </TimerBox>
 );
 
 OrderControls.propTypes = {

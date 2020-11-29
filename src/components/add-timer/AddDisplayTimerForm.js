@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "../common/Button";
+import { Button } from "../common";
 import { useTitle } from "../../hooks/use-title";
 
 export const AddDisplayTimerForm = ({ handleSubmit }) => {
