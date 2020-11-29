@@ -1,22 +1,13 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { IconButton } from "../common/IconButton";
+import { IconButton, TimerBox } from "../common";
 
 export const TimerControls = ({ toggleTicking, nextSubTimer }) => (
-  <div align="center">
-    <IconButton
-      onClick={() => nextSubTimer("prev")}
-      aria-label="Previous"
-    ></IconButton>
-    <IconButton
-      onClick={() => toggleTicking()}
-      aria-label="Play/pause"
-    ></IconButton>
-    <IconButton
-      onClick={() => nextSubTimer("next")}
-      aria-label="Next"
-    ></IconButton>
-  </div>
+  <TimerBox>
+    <IconButton onClick={() => nextSubTimer("prev")} aria-label="Previous" />
+    <IconButton onClick={toggleTicking} aria-label="Play/pause" />
+    <IconButton onClick={() => nextSubTimer("next")} aria-label="Next" />
+  </TimerBox>
 );
 
 TimerControls.propTypes = {
