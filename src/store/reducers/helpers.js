@@ -7,7 +7,7 @@ export function isTimerDisplayed(state, id) {
 
 export function handleRotateSubTimer(
   displayTimerArray,
-  { direction, subTimerId }
+  { direction, subId }
 ) {
   let nextIndex;
   let temp;
@@ -18,7 +18,7 @@ export function handleRotateSubTimer(
   displayTimerArray.subTimers = displayTimerArray.subTimers.map((subTimer) => {
     const { index } = subTimer;
 
-    if (subTimer.id === subTimerId) {
+    if (subTimer.id === subId) {
       nextIndex = isNext ? index + 1 : index - 1;
       return setCurrentSubTimer(subTimer, false);
     }
