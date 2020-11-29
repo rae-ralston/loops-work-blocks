@@ -1,27 +1,25 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
-import { CurrentTimer } from './CurrentTimer'
+import { CurrentTimer } from "./CurrentTimer";
 
 const Primary = ({
-    incrementLoopsMade,
-    moveSubTimerOne,
-    newSubTimer,
-    rotateSubTimer,
-    timerList,
-    updateDisplayTimerTitle,
-  }) => (
+  incrementLoopsMade,
+  moveSubTimerOne,
+  newSubTimer,
+  rotateSubTimer,
+  timerList,
+  updateDisplayTimerTitle,
+}) => (
   <CurrentTimer
-    displayTimer={
-      timerList.filter(timer => timer.isDisplayed)[0]
-    }
+    displayTimer={timerList.filter((timer) => timer.isDisplayed)[0]}
     rotateSubTimer={rotateSubTimer}
     newSubTimer={newSubTimer}
     incrementLoopsMade={incrementLoopsMade}
     updateDisplayTimerTitle={updateDisplayTimerTitle}
     moveSubTimerOne={moveSubTimerOne}
   />
-)
+);
 
 Primary.propTypes = {
   timerList: PropTypes.arrayOf(PropTypes.object),
@@ -30,6 +28,6 @@ Primary.propTypes = {
   newSubTimer: PropTypes.func,
   updateDisplayTimerTitle: PropTypes.func,
   moveSubTimerOne: PropTypes.func,
-}
+};
 
-export default Primary
+export default Primary;

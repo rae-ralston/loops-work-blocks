@@ -38,24 +38,24 @@ npm test
 ## Data Structure (WIP)
 
 users
-  id
-  name
-  themeid
+id
+name
+themeid
 
 timers
-  id
-  userid
-  totalloops
-  subtimers [{
-    id
-    timerid
-    totaltime
-    currenttime
-    order
-  }]
+id
+userid
+totalloops
+subtimers [{
+id
+timerid
+totaltime
+currenttime
+order
+}]
 
 themes
-    id
+id
 
 <!-- Explain how to run the automated tests for this system
 
@@ -81,13 +81,13 @@ Add additional notes about how to deploy this on a live system -->
 
 ## Built With
 
-* [Create React App](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md)
-* [Material UI @next](https://material-ui-next.com/)
+- [Create React App](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md)
+- [Material UI @next](https://material-ui-next.com/)
 
 ### Stack
 
-* react
-* redux
+- react
+- redux
 
 ## Contributing
 
@@ -99,7 +99,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Rachel Ralston** - *Initial work* - [github](https://github.com/rachel-ftw),  [linkedin](http://www.linkedin.com/in/rachelralston), [website](http://www.rachelralston.com)
+- **Rachel Ralston** - _Initial work_ - [github](https://github.com/rachel-ftw), [linkedin](http://www.linkedin.com/in/rachelralston), [website](http://www.rachelralston.com)
 
 See also the list of [contributors](https://github.com/rachel-ftw/looping-timer/contributors) who participated in this project.
 
@@ -109,4 +109,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Inspired by [Timer Loop](https://chrome.google.com/webstore/detail/timer-loop/mdkfiefeoimmobmhdimachkfcpkgahlc?hl=en)
+- Inspired by [Timer Loop](https://chrome.google.com/webstore/detail/timer-loop/mdkfiefeoimmobmhdimachkfcpkgahlc?hl=en)

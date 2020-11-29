@@ -1,7 +1,7 @@
-import { MOVE_SUB_TIMER_ONE } from '../constants'
+import { MOVE_SUB_TIMER_ONE } from "../constants";
 
 export function moveSubTimerOne(payload) {
-  const { id, index, direction, displayTimerId } = payload
+  const { id, index, direction, displayTimerId } = payload;
 
   return {
     type: MOVE_SUB_TIMER_ONE,
@@ -9,7 +9,7 @@ export function moveSubTimerOne(payload) {
     displayTimerId,
     id,
     index,
-  }
+  };
 }
 
 // TODO move subtimer arbritrary positions

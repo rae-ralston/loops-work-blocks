@@ -1,70 +1,68 @@
 export function isTimerDisplayed(state, id) {
-  return state.map(displayTimer => {
-    displayTimer.isDisplayed = displayTimer.id === id
-    return displayTimer
-  })
+  return state.map((displayTimer) => {
+    displayTimer.isDisplayed = displayTimer.id === id;
+    return displayTimer;
+  });
 }
 
 export function handleRotateSubTimer(
-  displayTimerArray, 
+  displayTimerArray,
   { direction, subTimerId }
 ) {
-  let nextIndex
-  let temp
-  let atEnd = false
-  const isNext = direction === 'next'
-  const isPrev = direction === 'prev'
+  let nextIndex;
+  let temp;
+  let atEnd = false;
+  const isNext = direction === "next";
+  const isPrev = direction === "prev";
 
-  displayTimerArray.subTimers = displayTimerArray.subTimers
-    .map(subTimer => {
-      const { index } = subTimer
-      
-      if (subTimer.id === subTimerId) {
-        nextIndex = isNext ? index + 1 : index - 1
-        return setCurrentSubTimer(subTimer, false)
-      }
+  displayTimerArray.subTimers = displayTimerArray.subTimers.map((subTimer) => {
+    const { index } = subTimer;
 
-      if (index === nextIndex && isNext) {
-        return setCurrentSubTimer(subTimer, true)
-      }
+    if (subTimer.id === subTimerId) {
+      nextIndex = isNext ? index + 1 : index - 1;
+      return setCurrentSubTimer(subTimer, false);
+    }
 
-      return subTimer
-    })
+    if (index === nextIndex && isNext) {
+      return setCurrentSubTimer(subTimer, true);
+    }
 
-  let { subTimers } = displayTimerArray
+    return subTimer;
+  });
+
+  let { subTimers } = displayTimerArray;
 
   if (isNext) {
     if (nextIndex > subTimers.length) {
-      temp = setCurrentSubTimer(subTimers[0], true)
-      atEnd = true
+      temp = setCurrentSubTimer(subTimers[0], true);
+      atEnd = true;
     }
 
-    displayTimerArray.subTimers[0] = atEnd 
-      ? temp 
-      : setCurrentSubTimer(subTimers[0], false)
+    displayTimerArray.subTimers[0] = atEnd
+      ? temp
+      : setCurrentSubTimer(subTimers[0], false);
   }
 
   if (isPrev) {
     displayTimerArray.subTimers = rotatePrevious(
-      subTimers, 
-      nextIndex, 
+      subTimers,
+      nextIndex,
       direction
-    )
+    );
   }
 
-  atEnd = false
-  return displayTimerArray
+  atEnd = false;
+  return displayTimerArray;
 }
 
 function rotatePrevious(subTimers, index) {
-  if (index <= 0) index = subTimers.length
+  if (index <= 0) index = subTimers.length;
 
-  return subTimers.map(timer => timer.index === index 
-    ? setCurrentSubTimer(timer, true) 
-    : timer
-  )
+  return subTimers.map((timer) =>
+    timer.index === index ? setCurrentSubTimer(timer, true) : timer
+  );
 }
 
 function setCurrentSubTimer(timer, status) {
-  return {...timer, isCurrent: status}
+  return { ...timer, isCurrent: status };
 }

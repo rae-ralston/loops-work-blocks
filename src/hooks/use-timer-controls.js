@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 export function useTimerControls() {
   const [timerControls, setTimerControls] = useState({
@@ -8,5 +8,5 @@ export function useTimerControls() {
     displayTitle: "",
   });
 
-  return [timerControls, setTimerControls]
+  return [timerControls, setTimerControls];
 }

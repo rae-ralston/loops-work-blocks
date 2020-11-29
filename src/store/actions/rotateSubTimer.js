@@ -1,4 +1,4 @@
-import { ROTATE_SUB_TIMER } from '../constants'
+import { ROTATE_SUB_TIMER } from "../constants";
 
 export default function rotateSubTimer(displayTimerId, subTimerId, direction) {
   return {
@@ -6,5 +6,5 @@ export default function rotateSubTimer(displayTimerId, subTimerId, direction) {
     displayTimerId,
     subTimerId,
     direction,
-  }
+  };
 }
