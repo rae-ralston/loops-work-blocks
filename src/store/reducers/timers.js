@@ -1,20 +1,21 @@
 import types from "../constants";
 import { isTimerDisplayed, handleRotateSub } from "./helpers";
-import data from "../../lib/data";
+import initialState from "../../lib/data";
 import { createDisplayTimer, createSubTimer } from "../../lib/helpers";
 
-export default function timers(state = data, action) {
+export default function timers(state = initialState, action) {
   switch (action.type) {
     case types.DISPLAY_SINGLE:
       return state.map((timer) => ({
         ...timer,
-        isDisplayed: timer.id === action.id,
+        isDisplayed: timer.id === action.id
       }));
 
     case types.ROTATE_SUB:
-      return state.map((timer) =>
-        timer.id === action.id ? handleRotateSub(timer, action) : timer
-      );
+      return state.map((timer) => (timer.id === action.id
+        ? handleRotateSub(timer, action)
+        : timer
+      ));
 
     case types.CREATE: {
       const createSub = createDisplayTimer(action.title);
@@ -34,33 +35,30 @@ export default function timers(state = data, action) {
           );
           return {
             ...timer,
-            subTimers: [...timer.subTimers, newDisplayTimer],
+            subTimers: [...timer.subTimers, newDisplayTimer]
           };
         }
         return timer;
       });
 
     case types.INCREMENT_LOOPS:
-      return state.map((timer) =>
-        timer.id === action.id
-          ? { ...timer, loopsMade: timer.loopsMade + 1 }
-          : timer
-      );
+      return state.map((timer) => (timer.id === action.id
+        ? { ...timer, loopsMade: timer.loopsMade + 1 }
+        : timer));
 
     case types.UPDATE_TITLE:
-      return state.map((timer) =>
-        timer.id === action.id ? { ...timer, title: action.title } : timer
-      );
+      return state.map((timer) => (timer.id === action.id
+        ? { ...timer, title: action.title }
+        : timer
+      ));
 
     case types.MOVE_SUB_ONE:
-      return state.map((timer) =>
-        timer.id === action.id
-          ? () => {
-              console.log("moving one");
-              return timer;
-            }
-          : timer
-      );
+      return state.map((timer) => (timer.id === action.id
+        ? () => {
+          console.log("moving one");
+          return timer;
+        }
+        : timer));
 
     default:
       return state;

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { IconButton, TimerBox } from "../common";
+import { IconButton, TimerBox } from "./common";
 
 const TimerControls = ({ toggleTicking, nextSubTimer }) => (
   <TimerBox>
@@ -13,6 +13,11 @@ const TimerControls = ({ toggleTicking, nextSubTimer }) => (
 TimerControls.propTypes = {
   toggleTicking: PropTypes.func,
   nextSubTimer: PropTypes.func
+};
+
+TimerControls.defaultProps = {
+  toggleTicking: () => {},
+  nextSubTimer: () => {}
 };
 
 export default TimerControls;

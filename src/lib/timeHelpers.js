@@ -14,11 +14,9 @@ export function totalHMSToSec(h, m, s) {
 }
 
 export function padTimeForDisplay(time) {
-  return time.toString().length <= 1 ? "0" + time : time;
+  return time.toString().length <= 1 ? `0${time}` : time;
 }
 
 export function createTime(timer) {
-  return `${padTimeForDisplay(timer.hours)}:${padTimeForDisplay(
-    timer.min
-  )}:${padTimeForDisplay(timer.sec)}`;
+  return `${padTimeForDisplay(timer.hours)}:${padTimeForDisplay(timer.min)}:${padTimeForDisplay(timer.sec)}`;
 }

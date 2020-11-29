@@ -1,12 +1,11 @@
 import "typeface-roboto";
 import React from "react";
-import { Nav } from "./components";
-import PrimaryContainer from "./components/primary/PrimaryContainer";
+import { Nav, SelectedTimer } from "./components";
 
 const App = () => (
   <div>
     <Nav />
-    <PrimaryContainer />
+    <SelectedTimer />
   </div>
 );
 

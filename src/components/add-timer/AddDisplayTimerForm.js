@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "../common";
 import { useTitle } from "../../hooks/use-title";
 
-export const AddDisplayTimerForm = ({ submit }) => {
+const AddDisplayTimerForm = ({ submit }) => {
   const [title] = useTitle();
 
   return (
@@ -16,5 +16,11 @@ export const AddDisplayTimerForm = ({ submit }) => {
 };
 
 AddDisplayTimerForm.propTypes = {
-  handleSubmit: PropTypes.func,
+  submit: PropTypes.func
 };
+
+AddDisplayTimerForm.defaultProps = {
+  submit: () => {})
+};
+
+export default AddDisplayTimerForm

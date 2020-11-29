@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "../common";
 import { hrs, min, sec } from "../../lib/helpers";
 import { totalHMSToSec } from "../../lib/timeHelpers";
-import { TimePicker } from "./TimePicker";
+import TimePicker from "./TimePicker";
 import { useTitle } from "../../hooks/use-title";
 
 export const AddSubTimerForm = ({ handleAddSubTimer }) => {
@@ -11,8 +11,7 @@ export const AddSubTimerForm = ({ handleAddSubTimer }) => {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const { hours, minutes, seconds } = time;
 
-  const handleChange = (name) => (e) =>
-    setTime({ ...time, [name]: e.target.value });
+  const handleChange = (name) => (e) => setTime({ ...time, [name]: e.target.value });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,5 +48,5 @@ export const AddSubTimerForm = ({ handleAddSubTimer }) => {
 };
 
 AddSubTimerForm.propTypes = {
-  handleAddSubTimer: PropTypes.func,
+  handleAddSubTimer: PropTypes.func
 };

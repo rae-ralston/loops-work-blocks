@@ -20,14 +20,14 @@ describe("timer actions", () => {
   });
 
   it("incrementLoops Action", () => {
-    let createdAction = actions.incrementLoops(defaultPayload);
-    let action = { type: types.INCREMENT_LOOPS, ...defaultPayload };
+    const createdAction = actions.incrementLoops(defaultPayload);
+    const action = { type: types.INCREMENT_LOOPS, ...defaultPayload };
     expect(createdAction).toEqual(action);
   });
 
   it("Creates the displaySingleTimer Action", () => {
-    let createdAction = actions.displaySingle(defaultPayload);
-    let action = { type: types.DISPLAY_SINGLE, ...defaultPayload };
+    const createdAction = actions.displaySingle(defaultPayload);
+    const action = { type: types.DISPLAY_SINGLE, ...defaultPayload };
     expect(createdAction).toEqual(action);
   });
 });
