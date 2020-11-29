@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import Card from 'material-ui/Card'
-import Divider from 'material-ui/Divider'
-import Typography from 'material-ui/Typography'
 import TimerControls from './TimerControls'
 import { convertSecToHMS, createTime } from '../../lib/timeHelpers'
 import { OrderControls } from './OrderControls';
@@ -41,31 +38,7 @@ const SubTimer = ({
   timer.min = HMS[1]
   timer.sec = HMS[2]
 
-  return (
-    <Card>
-      <div>
-        <Typography type='title' align='center'>{timer.title}</Typography>
-        <Typography type='subheading' align='center'>
-          {createTime(timer)}
-        </Typography>
-      </div>
-      {timer.isCurrent ?
-        <TimerControls
-          toggleTicking={toggleTicking}
-          nextSubTimer={nextSubTimer}
-          isTicking={isTicking} /> :
-        <div></div>
-      }
-      <OrderControls moveSubTimerOne={direction => moveSubTimerOne({ 
-          id: timer.id, 
-          index: timer.index, 
-          direction, 
-          displayTimerId,
-        })} 
-      />
-      <Divider/>
-    </Card>
-  )
+  return <div>subTimer</div>
 }
 
 SubTimer.propTypes = {

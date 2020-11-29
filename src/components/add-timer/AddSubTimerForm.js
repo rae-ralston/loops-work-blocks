@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import Card from 'material-ui/Card'
-import TextField from 'material-ui/TextField'
 import Button from '../common/Button'
 import { hrs, min, sec } from '../../lib/helpers'
 import { totalHMSToSec } from '../../lib/timeHelpers'
@@ -22,36 +20,34 @@ export const AddSubTimerForm = ({ handleAddSubTimer }) => {
   }
 
   return (
-    <Card>
-      <form
-        className="addSubTimerForm"
-        onSubmit={handleSubmit}>
-        <TextField
-          required
-          id='subTimer-title'
-          label='title'
-          value={title}
-          onChange={(e) => setTitle(e.target.value)} />
-        <br/>
-        <TimePicker
-          type="hours"
-          data={hrs}
-          current={hours}
-          handleChange={handleChange('hours')} />
-        <TimePicker
-          type="minutes"
-          data={min}
-          current={minutes}
-          handleChange={handleChange('minutes')} />
-        <TimePicker
-          type="seconds"
-          data={sec}
-          current={seconds}
-          handleChange={handleChange('seconds')} />
-        <br/>
-        <Button color="primary" type="submit">Submit</Button>
-      </form>
-    </Card>
+    <form
+      className="addSubTimerForm"
+      onSubmit={handleSubmit}>
+      {/* <TextField
+        required
+        id='subTimer-title'
+        label='title'
+        value={title}
+        onChange={(e) => setTitle(e.target.value)} /> */}
+      <br/>
+      <TimePicker
+        type="hours"
+        data={hrs}
+        current={hours}
+        handleChange={handleChange('hours')} />
+      <TimePicker
+        type="minutes"
+        data={min}
+        current={minutes}
+        handleChange={handleChange('minutes')} />
+      <TimePicker
+        type="seconds"
+        data={sec}
+        current={seconds}
+        handleChange={handleChange('seconds')} />
+      <br/>
+      <Button color="primary" type="submit">Submit</Button>
+    </form>
   )
 }
 

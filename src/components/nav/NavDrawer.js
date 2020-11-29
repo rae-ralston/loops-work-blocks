@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Menu from 'material-ui-icons/Menu'
 import NavContainer from './NavContainer'
 
 export const NavDrawer = () => {
@@ -8,7 +7,7 @@ export const NavDrawer = () => {
 
   return (
     <div>
-      <Menu onClick={toggleDrawer} />
+      {/* <Menu onClick={toggleDrawer} /> */}
       <NavContainer
         isDrawerOpen={isOpen}
         toggleDrawer= {toggleDrawer}
