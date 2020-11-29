@@ -5,17 +5,14 @@ export function isTimerDisplayed(state, id) {
   });
 }
 
-export function handleRotateSubTimer(
-  displayTimerArray,
-  { direction, subId }
-) {
+export function handleRotateSub(timers, { direction, subId }) {
   let nextIndex;
   let temp;
   let atEnd = false;
   const isNext = direction === "next";
   const isPrev = direction === "prev";
 
-  displayTimerArray.subTimers = displayTimerArray.subTimers.map((subTimer) => {
+  timers.subTimers = timers.subTimers.map((subTimer) => {
     const { index } = subTimer;
 
     if (subTimer.id === subId) {
@@ -30,7 +27,7 @@ export function handleRotateSubTimer(
     return subTimer;
   });
 
-  let { subTimers } = displayTimerArray;
+  let { subTimers } = timers;
 
   if (isNext) {
     if (nextIndex > subTimers.length) {
@@ -38,13 +35,13 @@ export function handleRotateSubTimer(
       atEnd = true;
     }
 
-    displayTimerArray.subTimers[0] = atEnd
+    timers.subTimers[0] = atEnd
       ? temp
       : setCurrentSubTimer(subTimers[0], false);
   }
 
   if (isPrev) {
-    displayTimerArray.subTimers = rotatePrevious(
+    timers.subTimers = rotatePrevious(
       subTimers,
       nextIndex,
       direction
@@ -52,7 +49,7 @@ export function handleRotateSubTimer(
   }
 
   atEnd = false;
-  return displayTimerArray;
+  return timers;
 }
 
 function rotatePrevious(subTimers, index) {

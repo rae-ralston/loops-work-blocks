@@ -1,9 +1,12 @@
 import types from "../constants";
 
-const create = (title) => ({ type: types.CREATE, title });
-const displaySingle = (id) => ({ type: types.DISPLAY_SINGLE, id });
-const incrementLoops = (id) => ({ type: types.INCREMENT_LOOPS, id });
-const updateTitle = (id, title) => ({ type: types.UPDATE_TITLE, id, title });
+const create = (payload) => ({ type: types.CREATE, ...payload });
+const displaySingle = (payload) => ({ type: types.DISPLAY_SINGLE, ...payload });
+const incrementLoops = (payload) => ({
+  type: types.INCREMENT_LOOPS,
+  ...payload,
+});
+const updateTitle = (payload) => ({ type: types.UPDATE_TITLE, ...payload });
 
 export default {
   create,
