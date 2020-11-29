@@ -7,7 +7,7 @@ import { TimePicker } from "./TimePicker";
 import { useTitle } from "../../hooks/use-title";
 
 export const AddSubTimerForm = ({ handleAddSubTimer }) => {
-  const [title, setTitle] = useTitle();
+  const [title] = useTitle();
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const { hours, minutes, seconds } = time;
 
