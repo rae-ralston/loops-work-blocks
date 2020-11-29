@@ -1,8 +1,10 @@
-import React from 'react'
+import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
+import React from 'react'
 
-import './Button.css'
-
+export const Btn = styled.button`
+  background-color: yellowgreen;
+`
 const Button = ({
   children,
   color = 'primary',
@@ -10,13 +12,13 @@ const Button = ({
   type = 'button',
   ...props
 }) => (
-  <button
+  <Btn
     className={`btn ${color}`}
     onClick={onClick}
     type={type}
     {...props}>
     {children}
-  </button>
+  </Btn>
 )
 
 Button.propTypes = {
