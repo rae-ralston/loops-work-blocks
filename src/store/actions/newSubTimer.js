@@ -1,4 +1,4 @@
-import { NEW_SUB_TIMER } from '../constants'
+import { NEW_SUB_TIMER } from "../constants";
 
 export default function newSubTimer(displayTimerId, title, totalTime) {
   return {
@@ -6,5 +6,5 @@ export default function newSubTimer(displayTimerId, title, totalTime) {
     displayTimerId,
     title,
     totalTime,
-  }
+  };
 }

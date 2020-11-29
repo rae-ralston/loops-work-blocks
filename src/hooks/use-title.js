@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 export function useTitle() {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
 
-  return [title, setTitle]
+  return [title, setTitle];
 }

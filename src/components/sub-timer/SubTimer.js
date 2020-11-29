@@ -1,19 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
-import TimerControls from './TimerControls'
-import { convertSecToHMS, createTime } from '../../lib/timeHelpers'
-import { OrderControls } from './OrderControls';
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { convertSecToHMS, createTime } from "../../lib/timeHelpers";
 
-const SubTimer = ({ 
-  displayTimerId, 
+const SubTimer = ({
+  displayTimerId,
   isLast,
-  isTicking, 
-  moveSubTimerOne,
+  isTicking,
   rotateSubTimer,
-  timer, 
-  toggleTicking, 
+  timer,
 }) => {
-  const [timeLeft, setTimeLeft] = useState(timer.totalSeconds)
+  const [timeLeft, setTimeLeft] = useState(timer.totalSeconds);
 
   useEffect(() => {
     if (timer.isCurrent && isTicking) {
@@ -22,29 +18,27 @@ const SubTimer = ({
       }, 1000);
     }
     if (timeLeft < 0) {
-      nextSubTimer('next')
+      nextSubTimer("next");
     }
-    
   });
 
-  const nextSubTimer = direction => {
-    setTimeLeft(timer.totalSeconds)
-    isLast(timer)
-    rotateSubTimer(displayTimerId, timer.id, direction)
-  }
+  const nextSubTimer = (direction) => {
+    setTimeLeft(timer.totalSeconds);
+    isLast(timer);
+    rotateSubTimer(displayTimerId, timer.id, direction);
+  };
 
-  let HMS = convertSecToHMS(timeLeft)
-  timer.hours = HMS[0]
-  timer.min = HMS[1]
-  timer.sec = HMS[2]
+  let HMS = convertSecToHMS(timeLeft);
+  timer.hours = HMS[0];
+  timer.min = HMS[1];
+  timer.sec = HMS[2];
 
-  return <div>subTimer</div>
-}
+  return <div>subTimer</div>;
+};
 
 SubTimer.propTypes = {
   isLast: PropTypes.func,
   displayTimerId: PropTypes.number,
-  isTicking: PropTypes.bool,
   rotateSubTimer: PropTypes.func,
   toggleTicking: PropTypes.func,
   timer: PropTypes.shape({
@@ -57,7 +51,6 @@ SubTimer.propTypes = {
     totalSeconds: PropTypes.number,
     title: PropTypes.string,
   }),
-  moveSubTimerOne: PropTypes.func
-}
+};
 
-export default SubTimer
+export default SubTimer;
