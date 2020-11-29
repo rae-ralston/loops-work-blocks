@@ -1,68 +1,70 @@
+import { curry, map } from "ramda";
+
 export function isTimerDisplayed(state, id) {
-  return state.map((displayTimer) => {
-    displayTimer.isDisplayed = displayTimer.id === id;
-    return displayTimer;
+  return state.map((timer) => {
+    const localTimer = { ...timer };
+    localTimer.isDisplayed = timer.id === id;
+    return localTimer;
   });
 }
+const setSubToCurrent = (timer, status) => ({ ...timer, isCurrent: status });
 
-export function handleRotateSubTimer(
-  displayTimerArray,
-  { direction, subTimerId }
-) {
+function rotatePrevious(subTimers, index) {
+  let localIndex = index;
+  if (index <= 0) localIndex = subTimers.length;
+
+  return subTimers.map((timer) => (timer.index === localIndex
+    ? setSubToCurrent(timer, true)
+    : timer
+  ));
+}
+
+const findNewCurrent = curry((subId, nextIndex, isNext, s) => {
+  const { index } = s;
+  let localNext;
+
+  // refactor to functional methods
+  if (s.id === subId) {
+    localNext = isNext ? index + 1 : index - 1;
+    return setSubToCurrent(s, false);
+  }
+
+  if (index === localNext && isNext) {
+    return setSubToCurrent(s, true);
+  }
+
+  return s;
+});
+
+export function handleRotateSub(timers, { direction, subId }) {
   let nextIndex;
   let temp;
   let atEnd = false;
   const isNext = direction === "next";
   const isPrev = direction === "prev";
 
-  displayTimerArray.subTimers = displayTimerArray.subTimers.map((subTimer) => {
-    const { index } = subTimer;
+  // const determineCurrentSub = findNewCurrent(subId, nextIndex, isNext);
+  // const localSubs = map(determineCurrentSub, timers.subTimers);
 
-    if (subTimer.id === subTimerId) {
-      nextIndex = isNext ? index + 1 : index - 1;
-      return setCurrentSubTimer(subTimer, false);
-    }
-
-    if (index === nextIndex && isNext) {
-      return setCurrentSubTimer(subTimer, true);
-    }
-
-    return subTimer;
-  });
-
-  let { subTimers } = displayTimerArray;
+  const { subTimers } = timers;
 
   if (isNext) {
     if (nextIndex > subTimers.length) {
-      temp = setCurrentSubTimer(subTimers[0], true);
+      temp = setSubToCurrent(subTimers[0], true);
       atEnd = true;
     }
 
-    displayTimerArray.subTimers[0] = atEnd
-      ? temp
-      : setCurrentSubTimer(subTimers[0], false);
+    timers.subTimers[0] = atEnd ? temp : setSubToCurrent(subTimers[0], false);
   }
 
   if (isPrev) {
-    displayTimerArray.subTimers = rotatePrevious(
+    timers.subTimers = rotatePrevious({
       subTimers,
       nextIndex,
       direction
-    );
+    });
   }
 
   atEnd = false;
-  return displayTimerArray;
-}
-
-function rotatePrevious(subTimers, index) {
-  if (index <= 0) index = subTimers.length;
-
-  return subTimers.map((timer) =>
-    timer.index === index ? setCurrentSubTimer(timer, true) : timer
-  );
-}
-
-function setCurrentSubTimer(timer, status) {
-  return { ...timer, isCurrent: status };
+  return timers;
 }

@@ -3,11 +3,7 @@ import PropTypes from "prop-types";
 import { convertSecToHMS } from "../../lib/timeHelpers";
 
 const SubTimer = ({
-  displayTimerId,
-  isLast,
-  isTicking,
-  rotateSubTimer,
-  timer,
+  displayTimerId, isLast, isTicking, rotateSub, timer
 }) => {
   const [timeLeft, setTimeLeft] = useState(timer.totalSeconds);
 
@@ -25,10 +21,10 @@ const SubTimer = ({
   const nextSubTimer = (direction) => {
     setTimeLeft(timer.totalSeconds);
     isLast(timer);
-    rotateSubTimer(displayTimerId, timer.id, direction);
+    rotateSub(displayTimerId, timer.id, direction);
   };
 
-  let HMS = convertSecToHMS(timeLeft);
+  const HMS = convertSecToHMS(timeLeft);
   timer.hours = HMS[0];
   timer.min = HMS[1];
   timer.sec = HMS[2];
@@ -39,7 +35,7 @@ const SubTimer = ({
 SubTimer.propTypes = {
   isLast: PropTypes.func,
   displayTimerId: PropTypes.number,
-  rotateSubTimer: PropTypes.func,
+  rotateSub: PropTypes.func,
   toggleTicking: PropTypes.func,
   timer: PropTypes.shape({
     id: PropTypes.number,
@@ -49,8 +45,8 @@ SubTimer.propTypes = {
     sec: PropTypes.number,
     isCurrent: PropTypes.bool,
     totalSeconds: PropTypes.number,
-    title: PropTypes.string,
-  }),
+    title: PropTypes.string
+  })
 };
 
 export default SubTimer;

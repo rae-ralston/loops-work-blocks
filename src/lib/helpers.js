@@ -2,8 +2,7 @@ let subTimerIdCount = 1;
 let displayTimerIdCount = 3;
 let subTimerOrder = 1;
 
-const _incrementTimerId = (type) =>
-  type === "display" ? displayTimerIdCount++ : subTimerIdCount++;
+const _incrementTimerId = (type) => (type === "display" ? displayTimerIdCount++ : subTimerIdCount++);
 
 export function createSubTimer(totalSeconds, isCurrent, title, index) {
   return {
@@ -12,7 +11,7 @@ export function createSubTimer(totalSeconds, isCurrent, title, index) {
     isCurrent,
     order: subTimerOrder++,
     title,
-    totalSeconds,
+    totalSeconds
   };
 }
 
@@ -23,12 +22,12 @@ export function createDisplayTimer(title) {
     loopsMade: 0,
     subTimerCount: 0,
     subTimers: [],
-    title,
+    title
   };
 }
 
 function _createTimeUnits(n) {
-  var arr = Array.apply(null, Array(n));
+  const arr = Array.apply(null, Array(n));
   return arr.map((x, i) => i);
 }
 
