@@ -3,21 +3,10 @@ import PropTypes from "prop-types";
 
 import { CurrentTimer } from "./CurrentTimer";
 
-export const Primary = ({
-  incrementLoopsMade,
-  moveSubTimerOne,
-  newSubTimer,
-  rotateSubTimer,
-  timerList,
-  updateDisplayTimerTitle,
-}) => (
+export const Primary = ({ timerList, ...props }) => (
   <CurrentTimer
     displayTimer={timerList.filter((timer) => timer.isDisplayed)[0]}
-    rotateSubTimer={rotateSubTimer}
-    newSubTimer={newSubTimer}
-    incrementLoopsMade={incrementLoopsMade}
-    updateDisplayTimerTitle={updateDisplayTimerTitle}
-    moveSubTimerOne={moveSubTimerOne}
+    {...props}
   />
 );
 
@@ -28,6 +17,15 @@ Primary.propTypes = {
   newSubTimer: PropTypes.func,
   updateDisplayTimerTitle: PropTypes.func,
   moveSubTimerOne: PropTypes.func,
+};
+
+Primary.defaultProps = {
+  timerList: [],
+  rotateSubTimer: () => {},
+  incrementLoopsMade: () => {},
+  newSubTimer: () => {},
+  updateDisplayTimerTitle: () => {},
+  moveSubTimerOne: () => {},
 };
 
 export default Primary;
