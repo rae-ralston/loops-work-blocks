@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { convertSecToHMS, createTime } from "../../lib/timeHelpers";
+import { convertSecToHMS } from "../../lib/timeHelpers";
 
 const SubTimer = ({
   displayTimerId,
